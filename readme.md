@@ -38,6 +38,8 @@ styles({
 }
 ```
 
+#### creates the following
+
 - build
   - fonts
     - MaterialIcons-Regular.CHECKSUM.eot
