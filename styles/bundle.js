@@ -1,4 +1,4 @@
-const path = require('path');
+const { dirname, join, relative } = require('path');
 const { readFile } = require('fildes');
 const stylelint = require('stylelint');
 const postcss = require('postcss');
@@ -17,7 +17,7 @@ const lint = stylelint({
   ignoreFiles: ['node_modules/**']
 });
 
-module.exports = ({ input, output }) => {
+module.exports = ({ input, output, assets = '../fonts' }) => {
   return readFile(input)
   .then(css => {
     return postcss([
@@ -25,16 +25,16 @@ module.exports = ({ input, output }) => {
       importCSS({
         plugins: [lint],
         onImport: files => {
-          files = files.map(file => path.relative(process.cwd(), file))
+          files = files.map(file => relative(process.cwd(), file))
           log('IMPORTS', files)
         }
       }),
       copyCSS({
         src: ['node_modules'],
-        dest: 'dist/fonts/',
+        dest: join(dirname(output), assets),
         template: '[name].[hash].[ext]',
-        relativePath: (dirname, fileMeta, result, opts) => {
-          return path.dirname(result.opts.to);
+        relativePath: (dir, fileMeta, result, opts) => {
+          return dirname(result.opts.to);
         }
       }),
       pxtorem({
