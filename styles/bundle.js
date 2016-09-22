@@ -57,7 +57,8 @@ module.exports = ({ input, output }) => {
             unitPrecision: 4
           }
         }
-      })
+      }),
+      reporter()
     ])
     .process(css, {
       from: input,
