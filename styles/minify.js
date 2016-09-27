@@ -1,4 +1,4 @@
-const cssnano = require('cssnano');
+const cssnano = require('cssnano')
 
 module.exports = ({ result, input, output }) => {
   return cssnano.process(result.css, {

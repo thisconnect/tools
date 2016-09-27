@@ -1,10 +1,14 @@
+const { relative } = require('path')
 const boxen = require('boxen')
 const chalk = require('chalk')
 const gzip = require('gzip-size')
 const prettyBytes = require('pretty-bytes')
 
+const cwd = process.cwd()
+
 exports.log = (context, msgs) => {
-  if (Array.isArray(msgs)){
+  if (Array.isArray(msgs)) {
+    msgs = msgs.map(src => relative(cwd, src))
     console.log(boxen(
       chalk.green.bold(context)
       + ':\n'
@@ -25,10 +29,10 @@ exports.log = (context, msgs) => {
   }
 }
 
-exports.size = results => {
+exports.size = ({ title, results }) => {
   const msgs = []
 
-  for (const key in results){
+  for (const key in results) {
     const size = Buffer.byteLength(results[key])
     const min = gzip.sync(results[key])
 
@@ -43,5 +47,5 @@ exports.size = results => {
     )
   }
 
-  console.log(boxen(msgs.join('\n'), { padding: 1 }))
+  console.log(boxen(title + '\n' + msgs.join('\n'), { padding: 1 }))
 }

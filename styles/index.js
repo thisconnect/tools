@@ -1,22 +1,25 @@
+const { basename, relative } = require('path')
 const { writeFile } = require('fildes');
 const bundle = require('./bundle.js');
 const minify = require('./minify.js');
-const { size } = require('./log.js');
+const { size } = require('../log/index.js');
 
+module.exports = ({ input, output, assets }) => {
 
-module.exports = ({ input, output }) => {
-
-  return bundle({ input, output })
+  return bundle({ input, output, assets })
   .then(result => {
 
     const outputmin = output.replace(/\.css$/, '.min.css')
 
-    return minify({ result, input: output, output: outputmin})
+    return minify({ result, input: output, output: outputmin })
     .then(min => {
 
       size({
-        Bundle: result.css,
-        minified: min.css
+        title: relative(process.cwd(), output),
+        results: {
+          Bundle: result.css,
+          minified: min.css
+        }
       })
 
       return Promise.all([
@@ -25,8 +28,8 @@ module.exports = ({ input, output }) => {
         writeFile(outputmin, min.css),
         writeFile(outputmin + '.map', min.map)
       ])
+      .then({ result, min })
 
     })
   })
-
 }

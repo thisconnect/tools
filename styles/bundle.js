@@ -1,21 +1,13 @@
-const { dirname, join, relative } = require('path');
+const { dirname, resolve, relative } = require('path');
 const { readFile } = require('fildes');
-const stylelint = require('stylelint');
 const postcss = require('postcss');
 const importCSS = require('postcss-import');
 const copyCSS = require('postcss-copy');
 const pxtorem = require('postcss-pxtorem');
 const cssnext = require('postcss-cssnext');
 const reporter = require('postcss-reporter');
-const { log } = require('./log.js');
-
-const lint = stylelint({
-  extends: 'stylelint-config-standard',
-  rules: {
-    'max-empty-lines': 2
-  },
-  ignoreFiles: ['node_modules/**']
-});
+const lint = require('./lint.js')
+const { log } = require('../log/index.js');
 
 module.exports = ({ input, output, assets = '../fonts' }) => {
   return readFile(input)
@@ -25,13 +17,12 @@ module.exports = ({ input, output, assets = '../fonts' }) => {
       importCSS({
         plugins: [lint],
         onImport: files => {
-          files = files.map(file => relative(process.cwd(), file))
           log('IMPORTS', files)
         }
       }),
       copyCSS({
         src: ['node_modules'],
-        dest: join(dirname(output), assets),
+        dest: resolve(dirname(output), assets),
         template: '[name].[hash].[ext]',
         relativePath: (dir, fileMeta, result, opts) => {
           return dirname(result.opts.to);
@@ -69,5 +60,3 @@ module.exports = ({ input, output, assets = '../fonts' }) => {
     })
   })
 }
-
-module.exports.foo = 'bar'
