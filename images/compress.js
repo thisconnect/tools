@@ -7,7 +7,7 @@ const imageminSVGO = require('imagemin-svgo')
 const suffix = /\.(jpeg|jpg|png)$/gi
 
 const png = imageminPngquant({
-  // quality: '50-95'
+  quality: '10-100'
 })
 
 const jpeg = imageminJpegtran({
