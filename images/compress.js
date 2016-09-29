@@ -2,6 +2,7 @@ const imagemin = require('imagemin')
 const imageminWebp = require('imagemin-webp')
 const imageminJpegtran = require('imagemin-jpegtran')
 const imageminPngquant = require('imagemin-pngquant')
+const imageminGifsicle = require('imagemin-gifsicle')
 const imageminSVGO = require('imagemin-svgo')
 
 const suffix = /\.(jpeg|jpg|png)$/gi
@@ -26,9 +27,15 @@ const webp = imageminWebp({
   lossless: false
 })
 
+const gif = imageminGifsicle({
+  // interlaced: false,
+  // optimizationLevel: 1,
+  // colors:
+})
+
 module.exports = buffer => {
   return imagemin.buffer(buffer, {
-    plugins: [png, jpeg, svg]
+    plugins: [png, jpeg, svg, gif]
   })
 }
 
