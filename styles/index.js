@@ -5,6 +5,8 @@ const minify = require('./minify.js');
 const { size } = require('../log/index.js');
 
 module.exports = ({ input, output, assets }) => {
+  console.log('from', input)
+  console.log('to', output)
 
   return bundle({ input, output, assets })
   .then(result => {
@@ -28,7 +30,7 @@ module.exports = ({ input, output, assets }) => {
         writeFile(outputmin, min.css),
         writeFile(outputmin + '.map', min.map)
       ])
-      .then({ result, min })
+      .then(() => min.css)
 
     })
   })
