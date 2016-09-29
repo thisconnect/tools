@@ -2,6 +2,7 @@ const { basename, dirname, extname, resolve } = require('path')
 const { readFile } = require('fildes')
 const { search, getHref } = require('./index.js')
 const { appendFragment, linkToStyle } = require('./modify.js')
+const minify = require('../../styles/index.js')
 const { log } = require('../../log/index.js')
 
 const append = (node, path, { dest, src }) => {
@@ -12,8 +13,26 @@ const append = (node, path, { dest, src }) => {
 
   return readFile(file)
   .catch(err => {
-    file = resolve(src, path)
-    return readFile(file)
+
+    return minify({
+      input: resolve(src, path),
+      output: file,
+      assets: './'
+    })
+    .then(css => {
+      file = resolve(src, path)
+      return css
+    })
+  /*  return readFile(file, { encoding: 'utf8' })
+    .then(css => {
+      console.log(file)
+      console.log(resolve(dest, ))
+      console.log(css)
+      //
+      // { input, output, assets }
+      return file
+    })
+    */
   }) // TODO MINIFY CSS
   .then(data => data.toString().replace(/\/\*#\ssourceMappingURL\=.*$/, ''))
   .then(css => appendFragment(node, css))

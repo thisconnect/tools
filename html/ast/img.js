@@ -3,6 +3,7 @@ const { parse } = require('url')
 const { readFile } = require('fildes')
 const { findNodes, getSrc } = require('./index.js')
 const { replaceFragment, removeAttr } = require('./modify.js')
+const { optimizeSVG } = require('../../images/compress.js')
 const { log } = require('../../log/index.js')
 
 const replace = (node, path, { dest, src }) => {
@@ -11,7 +12,8 @@ const replace = (node, path, { dest, src }) => {
   .catch(err => {
     file = resolve(src, path)
     return readFile(file)
-  }) // TODO MINIFY SVG
+    .then(buffer => optimizeSVG(buffer))
+  })
   .then(data => replaceFragment(node, data))
   .then(node => removeAttr(node, 'xmlns'))
   .then(() => file)
@@ -29,7 +31,7 @@ exports.inlineSvgs = (nodes, options) => {
   .then(imgs => imgs.filter(({ attrs }) => {
     for (let attr of attrs){
       if (attr.name == 'src'){
-        return (extname(parse(attr.value).pathname) == '.svg')
+        return (extname(parse(attr.value).pathname) == '.svg') // prase().pathname ??
       }
     }
     return false
