@@ -4,9 +4,9 @@
 - opinionated
 
 
-[![Build Status](https://img.shields.io/travis/thisconnect/tools/master.svg?style=flat-square)](https://travis-ci.org/thisconnect/tools)
-[![Dependencies](https://img.shields.io/david/thisconnect/tools.svg?style=flat-square)](https://david-dm.org/thisconnect/tools)
-[![Dev Dependencies](https://img.shields.io/david/dev/thisconnect/tools.svg?style=flat-square)](https://david-dm.org/thisconnect/tools#info=devDependencies)
+[![Build Status](https://img.shields.io/travis/thisconnect/tools/master.svg?style=flat-square&maxAge=1800)](https://travis-ci.org/thisconnect/tools)
+[![Dependencies](https://img.shields.io/david/thisconnect/tools.svg?style=flat-square&maxAge=1800)](https://david-dm.org/thisconnect/tools)
+[![Dev Dependencies](https://img.shields.io/david/dev/thisconnect/tools.svg?style=flat-square&maxAge=1800)](https://david-dm.org/thisconnect/tools?type=dev)
 
 ## documentation
 
