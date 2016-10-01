@@ -29,7 +29,7 @@
     "imagemin-webp": "^4.0.0",
     "jimp": "^0.2.27",
     "parse5": "^2.2.2",
-    "postcss": "^5.2.3",
+    "postcss": "^5.2.4",
     "postcss-copy": "^5.2.0",
     "postcss-cssnext": "^2.8.0",
     "postcss-import": "^8.1.2",
@@ -51,6 +51,6 @@
     "font-awesome": "^4.6.3",
     "normalize.css": "^4.2.0",
     "tap-spec": "^4.1.1",
-    "tape": "^4.6.0"
+    "tape": "^4.6.2"
   }
 }
