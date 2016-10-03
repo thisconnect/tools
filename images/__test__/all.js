@@ -31,7 +31,7 @@ test('resize and compress', t => {
   const input = resolve(__dirname, 'fixtures/palette.png')
   const output = resolve(__dirname, 'build/palette-small.png')
 
-  minifyImages({ input, output, width: 10 })
+  minifyImages({ input, output, width: 48 })
   .then(() => Promise.all([
     readFile(input).then(data => getSize(data)),
     readFile(output).then(data => getSize(data))
