@@ -1,8 +1,8 @@
 # Build tools
 
+- future proof / forward compatible
 - configured
 - opinionated
-
 
 [![Build Status](https://img.shields.io/travis/thisconnect/tools/master.svg?style=flat-square&maxAge=1800)](https://travis-ci.org/thisconnect/tools)
 [![Dependencies](https://img.shields.io/david/thisconnect/tools.svg?style=flat-square&maxAge=1800)](https://david-dm.org/thisconnect/tools)

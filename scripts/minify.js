@@ -1,22 +1,23 @@
 const { minify } = require('uglify-js')
 
-module.exports = ({ path, code }) => {
+module.exports = (code) => {
   return Promise.resolve(code)
   .then(data => Buffer.isBuffer(data) ? data.toString() : data)
   .then(code => {
-    ; return minify(code, {
-    fromString: true,
-    mangle: true,
-    output: {
-      // https://github.com/mishoo/UglifyJS2#beautifier-options
-      quote_style: 1,
-      beautify: false,
-      // indent_level: 2,
-      comments: false,
-      screw_ie8: true
-      // source_map: null
-    }
-  })})
+    return minify(code, {
+      fromString: true,
+      mangle: true,
+      output: {
+        // https://github.com/mishoo/UglifyJS2#beautifier-options
+        quote_style: 1,
+        beautify: false,
+        // indent_level: 2,
+        comments: false,
+        screw_ie8: true
+        // source_map: null
+      }
+    })
+  })
   .then(result => result.code)
 }
 
