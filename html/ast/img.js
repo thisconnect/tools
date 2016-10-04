@@ -1,4 +1,4 @@
-const { dirname, extname, resolve } = require('path')
+const { extname, resolve } = require('path')
 const { parse } = require('url')
 const { readFile } = require('fildes')
 const { findNodes, getSrc } = require('./index.js')
@@ -9,7 +9,7 @@ const { log } = require('../../log/index.js')
 const replace = (node, path, { dest, src }) => {
   let file = resolve(dest, path)
   return readFile(file)
-  .catch(err => {
+  .catch(() => {
     file = resolve(src, path)
     return readFile(file)
     .then(buffer => optimizeSVG(buffer))

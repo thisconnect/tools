@@ -1,13 +1,13 @@
-const { dirname, resolve, relative } = require('path');
-const { readFile } = require('fildes');
-const postcss = require('postcss');
-const importCSS = require('postcss-import');
-const copyCSS = require('postcss-copy');
-const pxtorem = require('postcss-pxtorem');
-const cssnext = require('postcss-cssnext');
-const reporter = require('postcss-reporter');
+const { dirname, resolve } = require('path')
+const { readFile } = require('fildes')
+const postcss = require('postcss')
+const importCSS = require('postcss-import')
+const copyCSS = require('postcss-copy')
+const pxtorem = require('postcss-pxtorem')
+const cssnext = require('postcss-cssnext')
+const reporter = require('postcss-reporter')
 const lint = require('./lint.js')
-const { log } = require('../log/index.js');
+const { log } = require('../log/index.js')
 
 module.exports = ({ input, output, assets = '../fonts' }) => {
   return readFile(input)
@@ -24,8 +24,8 @@ module.exports = ({ input, output, assets = '../fonts' }) => {
         src: ['node_modules'],
         dest: resolve(dirname(output), assets),
         template: '[name].[hash].[ext]',
-        relativePath: (dir, fileMeta, result, opts) => {
-          return dirname(result.opts.to);
+        relativePath: (dir, fileMeta, result/*, opts*/) => {
+          return dirname(result.opts.to)
         }
       }),
       pxtorem({

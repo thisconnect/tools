@@ -1,5 +1,5 @@
-const stylelint = require('stylelint');
-const stylestandard = require('stylelint-config-standard');
+const stylelint = require('stylelint')
+// const stylestandard = require('stylelint-config-standard')
 
 module.exports = stylelint({
   extends: 'stylelint-config-standard',

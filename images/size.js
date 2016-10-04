@@ -1,6 +1,6 @@
 const jimp = require('jimp')
 
-const resize = exports.resize = (buffer, { width }) => {
+exports.resize = (buffer, { width }) => {
   return jimp.read(buffer)
   .then(img => {
     const minwidth = Math.min(img.bitmap.width, width)
@@ -14,7 +14,7 @@ const resize = exports.resize = (buffer, { width }) => {
   }))
 }
 
-const getSize = exports.getSize = buffer => {
+exports.getSize = buffer => {
   return jimp.read(buffer)
   .then(img => {
     return {

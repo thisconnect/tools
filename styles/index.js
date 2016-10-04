@@ -1,8 +1,8 @@
-const { basename, relative } = require('path')
-const { writeFile } = require('fildes');
-const bundle = require('./bundle.js');
-const minify = require('./minify.js');
-const { size } = require('../log/index.js');
+const { relative } = require('path')
+const { writeFile } = require('fildes')
+const bundle = require('./bundle.js')
+const minify = require('./minify.js')
+const { size } = require('../log/index.js')
 
 module.exports = ({ input, output, assets }) => {
   console.log('from', input)

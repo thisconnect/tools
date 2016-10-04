@@ -24,7 +24,7 @@ module.exports = buffer => {
   })
 }
 
-module.exports.optimizeSVG = (buffer, options) => {
+module.exports.optimizeSVG = (buffer) => {
   const svg = imageminSVGO({
     plugins: [
       // { removeXMLNS: true }

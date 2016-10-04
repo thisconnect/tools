@@ -1,6 +1,6 @@
 const { resolve } = require('path')
 const test = require('tape')
-const { readFile, writeFile, rm } = require('fildes-extra')
+const { readFile, rm } = require('fildes-extra')
 const inlineHTML = require('../inline.js')
 
 test('cleanup', t => {
@@ -12,7 +12,7 @@ test('cleanup', t => {
 test('inline HTML', t => {
   const input = resolve(__dirname, 'fixtures/index.html')
   const output = resolve(__dirname, 'build/index.html')
-  
+
   inlineHTML({ input, output })
   .then(() => readFile(output, { encoding: 'utf8' }))
   .then(result => {

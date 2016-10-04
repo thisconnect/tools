@@ -13,7 +13,7 @@ module.exports = ({ input, output }) => {
     const dest = dirname(output)
     const src = dirname(input)
 
-    const html = ast.childNodes[1] || ast.childNodes[0]
+    const html = ast.childNodes[1] || ast.childNodes[0]
     const head = html.childNodes[0]
     const body = html.childNodes[1]
 
