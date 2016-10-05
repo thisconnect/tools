@@ -5,8 +5,6 @@ const minify = require('./minify.js')
 const { size } = require('../log/index.js')
 
 module.exports = ({ input, output, assets }) => {
-  console.log('from', input)
-  console.log('to', output)
 
   return bundle({ input, output, assets })
   .then(result => {
