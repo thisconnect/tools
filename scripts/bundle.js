@@ -6,7 +6,6 @@ const babel = require('rollup-plugin-babel')
 const replace = require('rollup-plugin-replace')
 const uglify = require('rollup-plugin-uglify')
 const filesize = require('rollup-plugin-filesize')
-
 // const builtins = require('rollup-plugin-node-builtins')
 
 const env = process.env.NODE_ENV || 'production'
@@ -69,11 +68,11 @@ module.exports.libs = ({ entry, dest, format = 'iife' }) => {
       babel({
         babelrc: false,
         // exclude: 'node_modules/**',
-        presets: ['react', 'stage-1', 'es2015-rollup']
+        presets: ['react', 'stage-3', 'es2015-rollup']
       }),
       uglify({
         compress: {
-          screw_ie8: true,
+          screw_ie8: false,
           warnings: false
         }
       }),
