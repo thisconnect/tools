@@ -1,3 +1,3 @@
-import * as mod from 'fixtures/module.js'
+import * as mod from './module.js'
 
 console.log(mod)

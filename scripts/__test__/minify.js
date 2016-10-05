@@ -4,7 +4,7 @@ const minify = require('../minify.js')
 test('minify', t => {
   minify(`
     /* comment */
-    
+
     (function(long){
       // comment
       console.log(long * 2)

@@ -21,10 +21,17 @@ module.exports = ({ entry, dest, format = 'iife' }) => {
       }),
       babel({
         babelrc: false,
-        presets: ['es2015-rollup' , 'react', 'stage-1']
+        presets: ['es2015-rollup' , 'react', 'stage-3']
       }),
       uglify(),
-      filesize()
+      filesize({
+        format: {
+          // base: 10,
+          exponent: 0
+          // standard: 'iec',
+          // bits: true
+        }
+      })
     ]
   })
   .then(bundle => bundle.write({
