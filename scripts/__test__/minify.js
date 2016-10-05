@@ -12,5 +12,5 @@ test('minify', t => {
   `)
   .then(min => t.equal(min, '!function(o){console.log(2*o)}(1);'))
   .then(() => t.end())
-  .catch(err => console.log(err))
+  .catch(err => t.fail(err))
 })
