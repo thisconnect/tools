@@ -27,6 +27,5 @@ module.exports = ({ input, output }) => {
     .then(() => minifyHTML(ast))
     .then(() => toHTML(ast))
     .then(html => writeFile(output, html))
-    .catch(err => console.error(err.stack))
   })
 }
