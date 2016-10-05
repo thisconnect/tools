@@ -6,10 +6,14 @@
       "jsx": true
     }
   },
+  "extends": ["eslint:recommended", "plugin:react/recommended"],
   "rules": {
+    "comma-dangle": ["warn", "never"],
+    "indent": ["warn", 2],
+    "linebreak-style": ["warn", "unix"],
     "no-console": "off",
-    "semi": ["warn", "never"],
-    "quotes": ["error", "single"]
+    "quotes": ["warn", "single", { "allowTemplateLiterals": true }],
+    "semi": ["warn", "never"]
   },
   "env": {
     "browser": true,
@@ -18,6 +22,5 @@
   },
   "plugins": [
     "react"
-  ],
-  "extends": ["eslint:recommended", "plugin:react/recommended"]
+  ]
 }
