@@ -12,7 +12,7 @@ const append = (node, path, { dest, src }) => {
   let file = resolve(dest, dir, `${base}.min${ext}`)
 
   return readFile(file)
-  .catch(err => {
+  .catch(() => {
 
     return minify({
       input: resolve(src, path),

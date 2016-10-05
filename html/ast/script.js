@@ -1,5 +1,5 @@
 const { resolve } = require('path')
-const { readFile, writeFile } = require('fildes')
+const { readFile } = require('fildes')
 const { findNodes, getSrc } = require('./index.js')
 const { appendFragment, removeSrc } = require('./modify.js')
 const minifyScript = require('../../scripts/minify.js')
@@ -10,7 +10,7 @@ const append = (node, path, { dest, src }) => {
   return readFile(file)
   .then(data => data.toString())
   .then(code => code.replace(/\/*#\ssourceMappingURL\=.*/, ''))
-  .catch(err => {
+  .catch(() => {
     file = resolve(src, path)
     return readFile(file)
     .then(data => {
