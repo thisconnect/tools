@@ -8,6 +8,7 @@ module.exports = ({ result, input, output }) => {
     },
     from: input,
     to: output,
+    save: true,
     autoprefixer: false
   })
 }
