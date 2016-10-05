@@ -1,7 +1,10 @@
 const stylelint = require('stylelint')
+const { resolve } = require('path')
 // const stylestandard = require('stylelint-config-standard')
 
 module.exports = stylelint({
+  // only required in DEV mode when tool is npm link'ed
+  configBasedir: resolve(__dirname, '../'),
   extends: 'stylelint-config-standard',
   rules: {
     'max-empty-lines': 3,
