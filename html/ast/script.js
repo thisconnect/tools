@@ -1,7 +1,7 @@
 const { resolve } = require('path')
 const { readFile } = require('fildes')
 const { findNodes, getSrc } = require('./index.js')
-const { appendFragment, removeSrc } = require('./modify.js')
+const { appendText, removeSrc } = require('./modify.js')
 const minifyScript = require('../../scripts/minify.js')
 const { log } = require('../../log/index.js')
 
@@ -19,7 +19,7 @@ const append = (node, path, { dest, src }) => {
       })
     })
   })
-  .then(content => appendFragment(node, content))
+  .then(content => appendText(node, content))
   .then(() => file)
 }
 

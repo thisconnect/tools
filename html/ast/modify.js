@@ -1,5 +1,17 @@
 const { parseFragment } = require('parse5')
 
+exports.appendText = (node, text) => {
+  return Promise.resolve()
+  .then(() => {
+    node.childNodes.push({
+      nodeName: '#text',
+      value: text,
+      parentNode: node
+    })
+    return node
+  })
+}
+
 exports.appendFragment = (node, content) => {
   return Promise.resolve(parseFragment(content))
   .then(fragment => {
