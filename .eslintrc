@@ -21,6 +21,7 @@
     "es6": true
   },
   "plugins": [
+    "promise",
     "react"
   ]
 }

@@ -23,6 +23,7 @@
     "cssnano": "^3.7.6",
     "es6-promise": "^4.0.5",
     "eslint": "^3.7.1",
+    "eslint-plugin-promise": "^3.0.0",
     "eslint-plugin-react": "^6.3.0",
     "fildes": "^1.0.5",
     "fildes-extra": "^0.6.0",
