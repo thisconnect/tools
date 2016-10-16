@@ -1,0 +1,5 @@
+@import "dir/sub.css";
+
+h1 {
+  margin: 0 0 2rem 0;
+}

@@ -1,0 +1,4 @@
+.ball-from-sub-dir {
+  background-image: url("../assets/ball.png");
+  background-repeat: no-repeat;
+}

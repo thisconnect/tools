@@ -1,0 +1,6 @@
+@import "nesting.css";
+
+.ball-from-nested {
+  background-image: url("assets/ball.png");
+  background-repeat: no-repeat;
+}

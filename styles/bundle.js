@@ -9,7 +9,32 @@ const reporter = require('postcss-reporter')
 const lint = require('./lint.js')
 const { log } = require('../log/index.js')
 
-module.exports = ({ input, output, assets = '../fonts' }) => {
+module.exports = ({
+  entry, dest, input, output,
+  // assets = './',
+  fonts = './',
+  fontsExt = /eot|ttf|woff|woff2/i,
+  fontSrcs = [{
+    fullName: 'fontawesome-webfont.svg',
+    path: 'font-awesome/fonts'
+  }]
+}) => {
+  if (!entry || !dest) console.warn(`use entry/dest ${__filename}`)
+  entry = entry || input
+  dest = dest || output
+
+  const fromFontSrc = fontSrcs.map(c => {
+    return Object.assign({ keys: Object.keys(c) }, c)
+  })
+
+  const isFontSrc = meta => {
+    return fromFontSrc.some(c => {
+      return c.keys.every(key => {
+        return c[key] == meta[key]
+      })
+    })
+  }
+
   return readFile(input)
   .then(css => {
     return postcss([
@@ -20,13 +45,23 @@ module.exports = ({ input, output, assets = '../fonts' }) => {
           log('IMPORTS', files)
         }
       }),
-      copyCSS({
-        src: ['node_modules'],
-        dest: resolve(dirname(output), assets),
+      copyCSS({ // fonts
+        src: ['node_modules', dirname(input)],
+        dest: resolve(dirname(output), fonts),
         template: '[name].[hash].[ext]',
-        relativePath: (dir, fileMeta, result/*, opts*/) => {
+        ignore: meta => {
+          if (isFontSrc(meta)){
+            return false
+          }
+          return !fontsExt.test(meta.ext)
+        },
+        relativePath: (dir, meta, result) => {
           return dirname(result.opts.to)
-        }
+        }/*,
+        transform: meta => {
+          console.log(`transform ${meta.sourceValue}`)
+          return Promise.resolve(meta)
+        }*/
       }),
       pxtorem({
         rootValue: 16,
@@ -58,5 +93,8 @@ module.exports = ({ input, output, assets = '../fonts' }) => {
         inline: false
       }
     })
+  })
+  .then(result => {
+    return result
   })
 }
