@@ -1,11 +1,12 @@
 const stylelint = require('stylelint')
-// const { resolve } = require('path')
+const { resolve } = require('path')
 // const stylestandard = require('stylelint-config-standard')
 
 module.exports = stylelint({
-  // only required in DEV mode when tool is npm link'ed
   // configBasedir: resolve(__dirname, '../'),
-  extends: 'stylelint-config-standard',
+  // extends: 'stylelint-config-standard',
+  // only required when tool is npm link'ed
+  extends: resolve(__dirname, '../node_modules/stylelint-config-standard'),
   rules: {
     'max-empty-lines': 3,
     'declaration-empty-line-before': null,
@@ -17,5 +18,5 @@ module.exports = stylelint({
     'number-leading-zero': null,
     'shorthand-property-no-redundant-values': null
   },
-  ignoreFiles: ['node_modules/*', 'node_modules/**']
+  ignoreFiles: ['node_modules/**']
 })
