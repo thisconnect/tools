@@ -1,0 +1,13 @@
+body {
+  background-color: pink;
+  color: green;
+}
+
+a {
+  color: #00c;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}

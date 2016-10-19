@@ -1,0 +1,12 @@
+h1 {
+  border-width: 2px;
+  border-style: dashed;
+  color: #555555;
+  padding: .5rem .8rem;
+}
+
+h1 + ol {
+  background-color: rgb(255, 255, 255);
+  border: 2px dashed;
+  padding: .5rem 2rem;
+}
