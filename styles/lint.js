@@ -7,14 +7,16 @@ module.exports = stylelint({
   // extends: 'stylelint-config-standard',
   // only required when tool is npm link'ed
   extends: resolve(__dirname, '../node_modules/stylelint-config-standard'),
+  // https://github.com/stylelint/stylelint/blob/master/docs/user-guide/example-config.md
   rules: {
-    'max-empty-lines': 3,
-    'declaration-empty-line-before': null,
+    'block-opening-brace-space-before': null,
+    'color-hex-length': null,
     'comment-empty-line-before': null,
+    'declaration-empty-line-before': null,
+    'max-empty-lines': 3,
     'no-eol-whitespace': [true, {
       ignore: ['empty-lines']
     }],
-    'block-opening-brace-space-before': null,
     'number-leading-zero': null,
     'shorthand-property-no-redundant-values': null
   },
