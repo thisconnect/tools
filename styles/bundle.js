@@ -17,7 +17,10 @@ module.exports = ({
   fontSrcs = [{
     fullName: 'fontawesome-webfont.svg',
     path: 'font-awesome/fonts'
-  }]
+  }],
+  map = {
+    inline: false
+  }
 }) => {
 
   const fromFontSrc = fontSrcs.map(c => {
@@ -85,7 +88,8 @@ module.exports = ({
     ])
     .process(css, {
       from: src,
-      to: dest
+      to: dest,
+      map
     })
   })
 }
