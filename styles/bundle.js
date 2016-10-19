@@ -10,7 +10,7 @@ const lint = require('./lint.js')
 const { log } = require('../log/index.js')
 
 module.exports = ({
-  entry, dest, input, output,
+  src, dest,
   // assets = './',
   fonts = './',
   fontsExt = /eot|ttf|woff|woff2/i,
@@ -19,9 +19,6 @@ module.exports = ({
     path: 'font-awesome/fonts'
   }]
 }) => {
-  if (!entry || !dest) console.warn(`use entry/dest ${__filename}`)
-  entry = entry || input
-  dest = dest || output
 
   const fromFontSrc = fontSrcs.map(c => {
     return Object.assign({ keys: Object.keys(c) }, c)
@@ -35,7 +32,7 @@ module.exports = ({
     })
   }
 
-  return readFile(input)
+  return readFile(src)
   .then(css => {
     return postcss([
       lint,
@@ -46,8 +43,8 @@ module.exports = ({
         }
       }),
       copyCSS({ // fonts
-        src: ['node_modules', dirname(input)],
-        dest: resolve(dirname(output), fonts),
+        src: ['node_modules', dirname(src)],
+        dest: resolve(dirname(dest), fonts),
         template: '[name].[hash].[ext]',
         ignore: meta => {
           if (isFontSrc(meta)){
@@ -87,14 +84,8 @@ module.exports = ({
       reporter()
     ])
     .process(css, {
-      from: input,
-      to: output,
-      map: {
-        inline: false
-      }
+      from: src,
+      to: dest
     })
-  })
-  .then(result => {
-    return result
   })
 }

@@ -10,13 +10,13 @@ test('cleanup', t => {
 })
 
 test('build CSS to build/dirs', t => {
-  const input = join(__dirname, 'fixtures/imports.css')
-  const output = join(__dirname, 'build/dirs/styles/bundle.css')
+  const src = join(__dirname, 'fixtures/imports.css')
+  const dest = join(__dirname, 'build/dirs/styles/bundle.css')
 
-  buildCSS({ input, output, assets: '../assets', fonts: '../fonts' })
-  .then(() => readFile(output), { encoding: 'utf8' })
+  buildCSS({ src, dest, assets: '../assets', fonts: '../fonts' })
+  .then(() => readFile(dest), { encoding: 'utf8' })
   .then(styles => t.ok(styles.indexOf(`url('../fonts/fontawesome-`) > -1, 'path begins with url(\'../fonts/'))
-  .then(() => readFile(output.replace('.css', '.min.css'), { encoding: 'utf8' }))
+  .then(() => readFile(dest.replace('.css', '.min.css'), { encoding: 'utf8' }))
   .then(min => t.ok(min.indexOf(`url(../fonts/fontawesome-`) > -1, 'minified path begins with url(../fonts/'))
   .then(() => t.end())
   .catch(err => t.fail(err))

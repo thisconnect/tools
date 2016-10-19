@@ -4,28 +4,28 @@ const bundle = require('./bundle.js')
 const minify = require('./minify.js')
 const { size } = require('../log/index.js')
 
-module.exports = ({ input, output, assets, fonts }) => {
+module.exports = ({ src, dest, assets, fonts }) => {
 
-  return bundle({ input, output, assets, fonts })
+  return bundle({ src, dest, assets, fonts })
   .then(result => {
 
     return Promise.all([
-      writeFile(output, result.css),
-      writeFile(output + '.map', result.map)
+      writeFile(dest, result.css),
+      writeFile(dest + '.map', result.map)
     ])
     .then(() => {
-      const outputmin = output.replace(/\.css$/, '.min.css')
+      const destmin = dest.replace(/\.css$/, '.min.css')
 
-      return minify({ result, input: output, output: outputmin })
+      return minify({ result, src: dest, dest: destmin })
       .then(min => {
 
         return Promise.all([
-          writeFile(outputmin, min.css),
-          writeFile(outputmin + '.map', min.map)
+          writeFile(destmin, min.css),
+          writeFile(destmin + '.map', min.map)
         ])
         .then(() => {
           size({
-            title: relative(process.cwd(), output),
+            title: relative(process.cwd(), dest),
             results: {
               Bundle: result.css,
               minified: min.css

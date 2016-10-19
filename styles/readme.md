@@ -1,21 +1,21 @@
 
 
-## input
+## src
 
 path to your stylesheet
 
-## output
+## dest
 
 path to write the bundled stylesheet and assets to
 
 ## example
 
 ```javascript
-const styles = require('tool/styles')
+const bundleCSS = require('tool/styles')
 
-styles({
-  input: 'src/main.css',
-  output: 'build/styles/bundle.css'
+bundleCSS({
+  src: 'src/main.css',
+  dest: 'build/styles/bundle.css'
 })
 .then(() => console.log('done woopidoo!'))
 .catch(err => console.error(err))

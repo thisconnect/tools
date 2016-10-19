@@ -1,13 +1,13 @@
 const cssnano = require('cssnano')
 
-module.exports = ({ result, input, output }) => {
+module.exports = ({ result, src, dest }) => {
   return cssnano.process(result.css, {
     map: {
       inline: false,
       prev: result.map
     },
-    from: input,
-    to: output,
+    from: src,
+    to: dest,
     save: true,
     autoprefixer: false
   })
