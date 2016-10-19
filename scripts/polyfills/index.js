@@ -1,10 +1,11 @@
-const { libs } = require('../bundle.js')
+const bundle = require('../bundle.js')
 const { resolve } = require('path')
 
 module.exports = ({ dest }) => {
-  return libs({
-    entry: resolve(__dirname, './all.js'),
+  return bundle({
+    src: resolve(__dirname, './all.js'),
     dest,
+    libs: true,
     format: 'iife'
   })
 }
