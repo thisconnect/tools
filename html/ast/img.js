@@ -6,7 +6,7 @@ const { replaceFragment, removeAttr } = require('./modify.js')
 const { optimizeSVG } = require('../../images/compress.js')
 const { log } = require('../../log/index.js')
 
-const replace = (node, path, { dest, src }) => {
+const replace = (node, path, { src, dest }) => {
   let file = resolve(dest, path)
   return readFile(file)
   .catch(() => {

@@ -10,8 +10,8 @@ module.exports = ({ input, output }) => {
   return readFile(input)
   .then(data => getAst(data))
   .then(ast => {
-    const dest = dirname(output)
     const src = dirname(input)
+    const dest = dirname(output)
 
     const html = ast.childNodes[1] || ast.childNodes[0]
     const head = html.childNodes[0]
@@ -20,9 +20,9 @@ module.exports = ({ input, output }) => {
     return Promise.all([
       // minifyStyles
       // minifyScripts
-      inlineStylesheets(head.childNodes, { dest, src }), // rename inlineLinks
-      inlineScripts(html.childNodes, { dest, src }),
-      inlineSvgs(body.childNodes, { dest, src }) // rename inlineImgs
+      inlineStylesheets(head.childNodes, { src, dest }), // rename inlineLinks
+      inlineScripts(html.childNodes, { src, dest }),
+      inlineSvgs(body.childNodes, { src, dest }) // rename inlineImgs
     ])
     .then(() => minifyHTML(ast))
     .then(() => toHTML(ast))

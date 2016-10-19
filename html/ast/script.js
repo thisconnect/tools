@@ -5,7 +5,7 @@ const { appendText, removeSrc } = require('./modify.js')
 const minifyScript = require('../../scripts/minify.js')
 const { log } = require('../../log/index.js')
 
-const append = (node, path, { dest, src }) => {
+const append = (node, path, { src, dest }) => {
   let file = resolve(dest, path)
   return readFile(file)
   .then(data => data.toString())

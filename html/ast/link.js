@@ -15,8 +15,8 @@ const append = (node, path, { dest, src }) => {
   .catch(() => {
 
     return minify({
-      input: resolve(src, path),
-      output: file,
+      src: resolve(src, path),
+      dest: file,
       assets: './'
     })
     .then(css => {
