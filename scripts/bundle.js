@@ -51,14 +51,21 @@ module.exports = ({
   src, dest,
   format = 'iife',
   write = true,
-  libs = false
+  libs = false,
+  minify = true
 }) => {
 
   const plugins = libs ? [
-    replace, npm, commonjs, babel, uglify, filesize
+    replace, npm, commonjs, babel
   ] : [
-    replace, babel, uglify, filesize
+    replace, babel
   ]
+
+  if (minify) {
+    plugins.push(uglify)
+  }
+
+  plugins.push(filesize)
 
   return rollup({
     entry: src,

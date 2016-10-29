@@ -1,3 +1,6 @@
-import * as mod from './module.js'
+import { foo } from './module.js'
 
-console.log(mod)
+const bar = 'lala'
+const test = foo(bar)
+
+console.log(test)

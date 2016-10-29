@@ -13,7 +13,7 @@ test('bundle es6 modules', t => {
   const src = resolve(__dirname, 'fixtures/entry.js')
   const dest = resolve(__dirname, 'build/bundle/bundle.js')
 
-  bundle({ src, dest })
+  bundle({ src, dest, minify: false })
   .then(() => readFile(dest))
   .then(code => t.ok(Buffer.byteLength(code) > 1, 'has some length'))
   .then(() => readFile(dest + '.map', { encoding: 'utf8' }))
