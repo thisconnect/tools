@@ -1,6 +1,7 @@
 const sync = require('../sync.js')
 const { resolve } = require('path')
 
+console.log('build step first then watch 2 dirs')
 sync({
   dir: resolve(__dirname, 'fixtures/simple'),
   open: true
