@@ -1,5 +1,5 @@
-const { join } = require('path')
 const test = require('tape')
+const { join } = require('path')
 const { readFile, rm } = require('fildes-extra')
 const buildCSS = require('../')
 

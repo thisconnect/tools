@@ -1,5 +1,5 @@
-const { resolve } = require('path')
 const test = require('tape')
+const { resolve } = require('path')
 const { readFile } = require('fildes')
 const compress = require('../compress.js')
 

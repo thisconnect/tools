@@ -1,5 +1,5 @@
-const { resolve } = require('path')
 const test = require('tape')
+const { resolve } = require('path')
 const { readFile, rm } = require('fildes-extra')
 const minifyImages = require('../index.js')
 const { getSize } = require('../size.js')

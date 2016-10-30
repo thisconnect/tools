@@ -1,5 +1,5 @@
-const { resolve } = require('path')
 const test = require('tape')
+const { resolve } = require('path')
 const { readFile, rm } = require('fildes-extra')
 const inlineHTML = require('../inline.js')
 
