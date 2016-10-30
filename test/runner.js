@@ -3,6 +3,10 @@ const buble = require('rollup-plugin-buble')
 const tapSpec = require('tap-spec')
 const { resolve } = require('path')
 
+const {
+  TRAVIS, TRAVIS_OS_NAME
+} = process.env
+
 module.exports = ({
   basePath,
   files
@@ -15,7 +19,7 @@ module.exports = ({
   }, {})
 
   const browsers = [
-    process.env.TRAVIS ? 'Chrome_travis_ci' : 'Chrome'
+    (TRAVIS && TRAVIS_OS_NAME == 'linux') ? 'Chrome_travis_ci' : 'Chrome'
   ] // 'Firefox'
 
   return Promise.resolve({
