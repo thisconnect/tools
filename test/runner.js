@@ -14,10 +14,14 @@ module.exports = ({
     return a
   }, {})
 
-  return karma({
+  const browsers = [
+    process.env.TRAVIS ? 'Chrome_travis_ci' : 'Chrome'
+  ] // 'Firefox'
+
+  return Promise.resolve({
     autoWatch: false,
     basePath,
-    browsers: [ 'Chrome' ], // 'Firefox' process.env.TRAVIS ? 'Chrome_travis_ci'
+    browsers,
     browserConsoleLogOptions: {
       level: 'error',
       format: '%b %T: %m',
@@ -42,8 +46,7 @@ module.exports = ({
       'karma-chrome-launcher'
     ],
     preprocessors,
-    // reporters: [ 'dots' ],
-    reporters: ['tap-pretty'],
+    // reporters: ['tap-pretty'],
     rollupPreprocessor: {
       external: ['tape'],
       format: 'iife',
@@ -55,38 +58,40 @@ module.exports = ({
       ],
       sourceMap: 'inline'
     },
-/*    customLaunchers: {
+    customLaunchers: {
       Chrome_travis_ci: {
         base: 'Chrome',
         flags: ['--no-sandbox']
       }
-    },*/
+    },
     singleRun: true,
     tapReporter: {
       prettify: tapSpec
     }
   })
-  .then(server => {
-    server.start()
+  .then(config => {
+    return new Promise((resolve, reject) => {
+      const server = new Server(config, exitCode => {
+        // process.exit(exitCode)
+        if (exitCode){
+          reject(exitCode)
+        } else {
+          resolve(exitCode)
+        }
+      })
 
-    server.refreshFiles()
-    .then(() => console.log('refreshFiles'))
-    .catch(err => console.log(err))
+      server.start()
+/*
+      server.refreshFiles()
+      .then(() => console.log('refreshFiles'))
+      .catch(err => console.log(err))
+      */
 
-    return server
+    })
   })
 
 }
 
-function karma(config){
-  return Promise.resolve(config)
-  .then(config => {
-    return new Server(config, exitCode => {
-      console.log('Karma has exited with ' + exitCode)
-      process.exit(exitCode)
-    })
-  })
-  .then(server => {
 /*
     server.on('browser_register', browser => {
       console.log('browser_register')
@@ -123,12 +128,6 @@ function karma(config){
       // console.log('run_complete', browsers, results)
     })
 */
-    return server
-
-  })
-
-}
-
 
 
 
