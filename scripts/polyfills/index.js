@@ -6,6 +6,7 @@ module.exports = ({ dest }) => {
     src: resolve(__dirname, './all.js'),
     dest,
     libs: true,
-    format: 'iife'
+    format: 'iife',
+    context: 'window'
   })
 }

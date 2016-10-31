@@ -52,7 +52,8 @@ module.exports = ({
   format = 'iife',
   write = true,
   libs = false,
-  minify = true
+  minify = true,
+  context
 }) => {
 
   const plugins = libs ? [
@@ -68,6 +69,7 @@ module.exports = ({
   plugins.push(filesize)
 
   return rollup({
+    context,
     entry: src,
     // external: ['date-fns/format', 'marked', 'react', 'react-dom'],
     plugins
