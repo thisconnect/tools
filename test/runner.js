@@ -19,7 +19,7 @@ module.exports = ({
   }, {})
 
   const browsers = [
-    (TRAVIS && TRAVIS_OS_NAME == 'linux') ? 'Chrome_travis_ci' : 'Chrome'
+    (TRAVIS) ? 'Chrome_travis_ci' : 'Chrome' //  && TRAVIS_OS_NAME == 'linux'
   ] // 'Firefox'
 
   return Promise.resolve({
