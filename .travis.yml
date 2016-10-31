@@ -7,7 +7,7 @@ before_install: # before_script
   - export CHROME_BIN=chromium-browser
   - export DISPLAY=:99.0
   - if [ "${TRAVIS_OS_NAME}" = "linux" ]; then sh -e /etc/init.d/xvfb start; fi
-  - if [ "${TRAVIS_OS_NAME}" = "osx" ]; ls /Applications/; fi
+  - if [ "${TRAVIS_OS_NAME}" = "osx" ]; then ls /Applications/; fi
   # - if [ "${TRAVIS_OS_NAME}" = "osx" ]; then brew cask install google-chrome; fi
 cache:
   bundler: true
@@ -16,7 +16,7 @@ cache:
 language: node_js
 node_js:
   - '6'
-  - 'stable'
+#  - 'stable'
 os:
   - linux
   - osx
