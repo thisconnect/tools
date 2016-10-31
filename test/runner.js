@@ -19,8 +19,9 @@ module.exports = ({
   }, {})
 
   const browsers = [
-    (TRAVIS) ? 'Chrome_travis_ci' : 'Chrome' //  && TRAVIS_OS_NAME == 'linux'
-  ] // 'Firefox'
+    // (TRAVIS) ? 'Chrome_travis_ci' : 'Chrome', //  && TRAVIS_OS_NAME == 'linux'
+    'Firefox'
+  ]
 
   return Promise.resolve({
     autoWatch: false,
@@ -31,9 +32,13 @@ module.exports = ({
       format: '%b %T: %m',
       terminal: false
     },
+    browserDisconnectTimeout: 3000,
+    browserDisconnectTolerance: 0,
+    browserNoActivityTimeout: 5000,
+    captureTimeout: 3000,
     // client: { captureConsole: false },
     colors: true,
-    // concurrency: 2,
+    // concurrency: 1,
     // exclude
     files: [
       resolve(__dirname, 'build/tape.min.js'),
@@ -46,10 +51,11 @@ module.exports = ({
       'karma-rollup-plugin',
       'karma-tap',
       'karma-tap-pretty-reporter',
-      // 'karma-firefox-launcher',
-      'karma-chrome-launcher'
+      // 'karma-chrome-launcher',
+      'karma-firefox-launcher'
     ],
     preprocessors,
+    retryLimit: 0,
     // reporters: ['tap-pretty'],
     rollupPreprocessor: {
       external: ['tape'],
@@ -62,12 +68,12 @@ module.exports = ({
       ],
       sourceMap: 'inline'
     },
-    customLaunchers: {
+/*    customLaunchers: {
       Chrome_travis_ci: {
         base: 'Chrome',
         flags: ['--no-sandbox']
       }
-    },
+    },*/
     singleRun: true,
     tapReporter: {
       prettify: tapSpec
@@ -77,6 +83,7 @@ module.exports = ({
     return new Promise((resolve, reject) => {
       const server = new Server(config, exitCode => {
         // process.exit(exitCode)
+        console.log('done!!! ', exitCode)
         if (exitCode){
           reject(exitCode)
         } else {
