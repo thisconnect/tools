@@ -1,5 +1,5 @@
 addons:
-  firefox: '48'
+  firefox: '49.0'
 before_install: # before_script
   # - export CHROME_BIN=chromium-browser
   - export DISPLAY=:99.0
