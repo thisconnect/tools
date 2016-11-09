@@ -28,3 +28,20 @@ test('compress png', t => {
   .then(() => t.end())
   .catch(err => t.fail(err))
 })
+
+test('compress many', t => {
+  const input = resolve(__dirname, 'fixtures/tiger.jpg')
+
+  const files = []
+  let count = 11
+  while (count--){
+    files.push(readFile(input).then(png => compress(png)))
+  }
+
+  Promise.all(files)
+  .then(() => {
+    console.log('done')
+    t.end()
+  })
+  .catch(err => t.fail(err))
+})

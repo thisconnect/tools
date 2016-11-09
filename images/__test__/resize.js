@@ -17,3 +17,19 @@ test('resize png', t => {
   .then(() => t.end())
   .catch(err => t.fail(err))
 })
+
+test('resize many', t => {
+  const input = resolve(__dirname, 'fixtures/palette.png')
+
+  const files = []
+  let count = 20
+  while (count--){
+    files.push(readFile(input).then(png => resize(png, { width: 48 })))
+  }
+
+  Promise.all(files)
+  .then(() => {
+    console.log('done')
+    t.end()
+  })
+})

@@ -43,3 +43,24 @@ test('resize and compress', t => {
   .then(() => t.end())
   .catch(err => t.fail(err))
 })
+
+test('many', t => {
+  const input = resolve(__dirname, 'fixtures/palette.png')
+
+  const files = []
+  let count = 20
+  while (count--){
+    files.unshift(`palette-${count}.png`)
+  }
+  Promise.resolve(files.map(file => resolve(__dirname, 'build/many', file)))
+  .then(dest => {
+    return Promise.all(dest.map(d => minifyImages({
+      input, output: d, width: 48
+    })))
+    .then(() => {
+      console.log('done')
+      t.end()
+    })
+  })
+
+})
