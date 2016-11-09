@@ -1,9 +1,7 @@
 const test = require('tape')
 const runner = require('../runner.js')
 
-const {
-  TRAVIS, TRAVIS_OS_NAME
-} = process.env
+const { TRAVIS, TRAVIS_OS_NAME } = process.env
 
 test('test karma runner', t => {
 
