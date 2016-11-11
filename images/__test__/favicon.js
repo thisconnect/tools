@@ -4,8 +4,8 @@ const { readFile } = require('fildes')
 const toIco = require('../ico.js')
 
 test('create ico from png', t => {
-  const input = resolve(__dirname, 'fixtures/favicon.png')
-  readFile(input)
+  const src = resolve(__dirname, 'fixtures/favicon.png')
+  readFile(src)
   .then(buffer => toIco(buffer))
   .then(ico => {
     t.ok(ico, 'has ico')

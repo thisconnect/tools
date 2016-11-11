@@ -11,13 +11,13 @@ test('cleanup', t => {
 })
 
 test('compress', t => {
-  const input = resolve(__dirname, 'fixtures/palette.png')
-  const output = resolve(__dirname, 'build/palette.png')
+  const src = resolve(__dirname, 'fixtures/palette.png')
+  const dest = resolve(__dirname, 'build/palette.png')
 
-  minifyImages({ input, output })
+  minifyImages({ src, dest })
   .then(() => Promise.all([
-    readFile(input).then(data => Buffer.byteLength(data)),
-    readFile(output).then(data => Buffer.byteLength(data))
+    readFile(src).then(data => Buffer.byteLength(data)),
+    readFile(dest).then(data => Buffer.byteLength(data))
   ]))
   .then(sizes => {
     t.ok(sizes[1] < sizes[0], 'size of compressed image is smaller')
@@ -28,13 +28,13 @@ test('compress', t => {
 
 
 test('resize and compress', t => {
-  const input = resolve(__dirname, 'fixtures/palette.png')
-  const output = resolve(__dirname, 'build/palette-small.png')
+  const src = resolve(__dirname, 'fixtures/palette.png')
+  const dest = resolve(__dirname, 'build/palette-small.png')
 
-  minifyImages({ input, output, width: 48 })
+  minifyImages({ src, dest, width: 48 })
   .then(() => Promise.all([
-    readFile(input).then(data => getSize(data)),
-    readFile(output).then(data => getSize(data))
+    readFile(src).then(data => getSize(data)),
+    readFile(dest).then(data => getSize(data))
   ]))
   .then(sizes => {
     t.ok(sizes[1].width < sizes[0].width, 'width of resized image is smaller')
@@ -45,7 +45,7 @@ test('resize and compress', t => {
 })
 
 test('many', t => {
-  const input = resolve(__dirname, 'fixtures/palette.png')
+  const src = resolve(__dirname, 'fixtures/palette.png')
 
   const files = []
   let count = 20
@@ -55,7 +55,7 @@ test('many', t => {
   Promise.resolve(files.map(file => resolve(__dirname, 'build/many', file)))
   .then(dest => {
     return Promise.all(dest.map(d => minifyImages({
-      input, output: d, width: 48
+      src, dest: d, width: 48
     })))
     .then(() => {
       console.log('done')

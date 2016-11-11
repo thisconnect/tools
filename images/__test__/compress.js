@@ -30,12 +30,12 @@ test('compress png', t => {
 })
 
 test('compress many', t => {
-  const input = resolve(__dirname, 'fixtures/tiger.jpg')
+  const src = resolve(__dirname, 'fixtures/tiger.jpg')
 
   const files = []
   let count = 11
   while (count--){
-    files.push(readFile(input).then(png => compress(png)))
+    files.push(readFile(src).then(png => compress(png)))
   }
 
   Promise.all(files)
