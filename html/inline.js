@@ -6,12 +6,15 @@ const { inlineScripts } = require('./ast/script.js')
 const { inlineStylesheets } = require('./ast/link.js')
 const minifyHTML = require('./minify.js')
 
-module.exports = ({ input, output }) => {
-  return readFile(input)
+module.exports = ({ src, dest }) => {
+
+  return readFile(src)
   .then(data => getAst(data))
   .then(ast => {
-    const src = dirname(input)
-    const dest = dirname(output)
+    const option = {
+      src: dirname(src),
+      dest: dirname(dest)
+    }
 
     const html = ast.childNodes[1] || ast.childNodes[0]
     const head = html.childNodes[0]
@@ -20,12 +23,12 @@ module.exports = ({ input, output }) => {
     return Promise.all([
       // minifyStyles
       // minifyScripts
-      inlineStylesheets(head.childNodes, { src, dest }), // rename inlineLinks
-      inlineScripts(html.childNodes, { src, dest }),
-      inlineSvgs(body.childNodes, { src, dest }) // rename inlineImgs
+      inlineStylesheets(head.childNodes, option), // rename inlineLinks
+      inlineScripts(html.childNodes, option),
+      inlineSvgs(body.childNodes, option) // rename inlineImgs
     ])
     .then(() => minifyHTML(ast))
     .then(() => toHTML(ast))
-    .then(html => writeFile(output, html))
+    .then(html => writeFile(dest, html))
   })
 }
