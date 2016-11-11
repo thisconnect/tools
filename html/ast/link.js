@@ -1,15 +1,17 @@
-const { basename, dirname, extname, resolve } = require('path')
+const { basename, dirname, resolve } = require('path')
 const { readFile } = require('fildes')
 const { search, getHref } = require('./index.js')
 const { appendFragment, linkToStyle } = require('./modify.js')
 const minify = require('../../styles/index.js')
 const { log } = require('../../log/index.js')
 
-const append = (node, path, { dest, src }) => {
+const append = (node, path, { src, dest }) => {
   const dir = dirname(path)
-  const ext = extname(path)
-  const base = basename(path, ext)
-  let file = resolve(dest, dir, `${base}.min${ext}`)
+  // const ext = extname(path)
+  // const base = basename(path, ext)
+  // let file = resolve(dest, dir, `${base}.min${ext}`)
+  const base = basename(path)
+  let file = resolve(dest, dir, base)
 
   return readFile(file)
   .catch(() => {
