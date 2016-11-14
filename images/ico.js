@@ -7,5 +7,4 @@ module.exports = (buffer, options = {}) => {
   return Promise.resolve()
   .then(() => crop ? autocrop(buffer) : buffer)
   .then(buf => toIco(buf, { resize, sizes: [16] }))
-  .catch(err => console.log(err))
 }
