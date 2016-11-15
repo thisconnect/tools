@@ -3,8 +3,9 @@ const { parse } = require('url')
 const { readFile } = require('fildes')
 const { findNodes, getSrc } = require('./index.js')
 const { replaceFragment, removeAttr } = require('./modify.js')
-const { optimizeSVG } = require('../../images/compress.js')
+const SVGO = require('svgo')
 const { log } = require('../../log/index.js')
+
 
 const replace = (node, path, { src, dest }) => {
   let file = resolve(dest, path)
@@ -12,9 +13,22 @@ const replace = (node, path, { src, dest }) => {
   .catch(() => {
     file = resolve(src, path)
     return readFile(file)
-    .then(buffer => optimizeSVG(buffer))
+    .then(buffer => {
+      return new Promise((resolve/*, reject*/) => {
+        const svgo = new SVGO({
+          plugins: [
+            { removeXMLNS: true }
+          ]
+        })
+        svgo.optimize(buffer.toString(), result => resolve(result.data))
+      })
+    })
+  //  .then(buffer => optimize(buffer.toString()))
+    // .then(b => {console.log(b, '--------------'); return b; })
+
   })
   .then(data => replaceFragment(node, data))
+  .then(b => {console.log('===', b, '--------------'); return b; })
   .then(node => removeAttr(node, 'xmlns'))
   .then(() => file)
 }
