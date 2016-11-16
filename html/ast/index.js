@@ -1,4 +1,6 @@
-const { parse, serialize } = require('parse5')
+const { parse, serialize, treeAdapters } = require('parse5')
+const adapter = treeAdapters.default
+
 
 exports.getAst = data => {
   return Promise.resolve(data)
@@ -6,7 +8,16 @@ exports.getAst = data => {
   .then(html => parse(html))
 }
 
-exports.toHTML = ast => Promise.resolve(serialize(ast))
+exports.toHTML = ast => {
+  if (ast.nodeName == '#document'){
+    return Promise.resolve(serialize(ast))
+  }
+  return new Promise((resolve/*, reject*/) => {
+    const fragment = adapter.createDocumentFragment()
+    adapter.appendChild(fragment, ast)
+    resolve(serialize(fragment))
+  })
+}
 
 exports.findNodes = (nodes, nodeName) => {
   const results = []
