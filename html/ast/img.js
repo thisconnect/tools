@@ -28,7 +28,6 @@ const replace = (node, path, { src, dest }) => {
 
   })
   .then(data => replaceFragment(node, data))
-  .then(b => {console.log('===', b, '--------------'); return b; })
   .then(node => removeAttr(node, 'xmlns'))
   .then(() => file)
 }
