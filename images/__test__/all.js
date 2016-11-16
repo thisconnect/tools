@@ -44,7 +44,7 @@ test('resize and compress', t => {
   .catch(err => t.fail(err))
 })
 
-test('many', t => {
+test.skip('many', t => {
   const src = resolve(__dirname, 'fixtures/palette.png')
 
   const files = []
