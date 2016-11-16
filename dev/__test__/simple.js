@@ -3,7 +3,7 @@ const sync = require('../sync.js')
 const fetch = require('node-fetch')
 const { resolve } = require('path')
 
-test('fetch browser-sync', t => {
+test.skip('fetch browser-sync', t => {
 
   sync({
     dir: resolve(__dirname, 'fixtures/simple'),
