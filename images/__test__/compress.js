@@ -2,17 +2,42 @@ const test = require('tape')
 const { resolve } = require('path')
 const { readFile } = require('fildes')
 const compress = require('../compress.js')
+const { optimizeSVG } = compress
 
 test('compress svg', t => {
   readFile(resolve(__dirname, 'fixtures/mail.svg'))
   .then(svg => compress(svg).then(min => {
+    t.ok(min.indexOf('xmlns="http://www.w3.org/2000/svg"') > -1, 'has xmlns attribute')
     return {
       original: Buffer.byteLength(svg),
       compressed: Buffer.byteLength(min)
     }
   }))
-  .then(result => t.ok(result.compressed < result.original, 'compressed svg is smaller'))
-  .then(() => t.end())
+  .then(result => {
+    t.ok(result.compressed < result.original, 'compressed svg is smaller')
+    t.end()
+  })
+  .catch(err => t.fail(err))
+})
+
+test('optimizeSVG with plugins', t => {
+  const options = {
+    plugins: [
+      { removeXMLNS: true }
+    ]
+  }
+  readFile(resolve(__dirname, 'fixtures/mail.svg'))
+  .then(svg => optimizeSVG(svg, options).then(min => {
+    t.ok(min.indexOf('xmlns="http://www.w3.org/2000/svg"') == -1, 'no xmlns attribute')
+    return {
+      original: Buffer.byteLength(svg),
+      compressed: Buffer.byteLength(min)
+    }
+  }))
+  .then(result => {
+    t.ok(result.compressed < result.original, 'compressed svg is smaller')
+    t.end()
+  })
   .catch(err => t.fail(err))
 })
 
@@ -40,7 +65,6 @@ test('compress many', t => {
 
   Promise.all(files)
   .then(() => {
-    console.log('done')
     t.end()
   })
   .catch(err => t.fail(err))
