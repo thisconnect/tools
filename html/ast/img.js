@@ -23,9 +23,6 @@ const replace = (node, path, { src, dest }) => {
         svgo.optimize(buffer.toString(), result => resolve(result.data))
       })
     })
-  //  .then(buffer => optimize(buffer.toString()))
-    // .then(b => {console.log(b, '--------------'); return b; })
-
   })
   .then(data => replaceFragment(node, data))
   .then(node => removeAttr(node, 'xmlns'))
