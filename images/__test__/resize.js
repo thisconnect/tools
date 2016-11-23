@@ -18,7 +18,7 @@ test('resize png', t => {
   .catch(err => t.fail(err))
 })
 
-test('resize many', t => {
+test.skip('resize many', t => {
   const src = resolve(__dirname, 'fixtures/palette.png')
 
   const files = []
