@@ -3,8 +3,8 @@ const sync = require('../sync.js')
 const fetch = require('node-fetch')
 const { resolve } = require('path')
 
-test.skip('fetch browser-sync', t => {
 
+test('fetch browser-sync', t => {
   sync({
     dir: resolve(__dirname, 'fixtures/simple'),
     open: false,
@@ -30,6 +30,21 @@ test.skip('fetch browser-sync', t => {
       t.end()
     })
   })
-  .catch(err => console.log(err))
+  .catch(err => t.fail(err))
+})
 
+test('fail if dir doesnt exist', t => {
+  sync({
+    dir: resolve(__dirname, 'fixtures/nothinghere'),
+    open: false,
+    watch: false
+  })
+  .then(bs => {
+    t.fail(bs)
+  })
+  .catch(error => {
+    t.ok(error, 'got error')
+    t.equal(error.code, 'ENOENT', 'error.code is ENOENT')
+    t.end()
+  })
 })

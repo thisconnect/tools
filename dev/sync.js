@@ -3,6 +3,7 @@ const { parse } = require('url')
 const { resolve } = require('path')
 const bundleCSS = require('../styles/bundle.js')
 const bundleJS = require('../scripts/bundle.js')
+const { fstat } = require('fildes')
 
 module.exports = ({
   dir,
@@ -10,53 +11,57 @@ module.exports = ({
   watch = true
 } = {}) => {
   const files = ['*.html', '*.css', 'styles/*.css', '*.js', 'scripts/*.js'].map(f => resolve(dir, f))
-  console.time('browser-sync create&init')
+  console.time('browser-sync init')
 
-  return Promise.resolve({
-    browser: ['google chrome'],
-    codeSync: true,
-    // files: 'app/css/*.less',
-    /*files: [{
-      match: files,
-      fn: (event, file) => {
-        console.log(1, basename(file))
+  return fstat(dir)
+  .then(stat => stat.isDirectory())
+  .then(() => {
+    return Promise.resolve({
+      browser: ['google chrome'],
+      codeSync: true,
+      // files: 'app/css/*.less',
+      /*files: [{
+        match: files,
+        fn: (event, file) => {
+          console.log(1, basename(file))
+        },
+        options: {
+          ignored: '*.min.css'
+        }
+      }],*/
+      /*ghostMode: {
+        clicks: true,
+        forms: true,
+        scroll: false
+      }*/
+      // host: '192.168.1.1'
+      injectChanges: true,
+      // injectFileTypes: ['less'],
+      // https: true,
+      // https: { key: 'path-to-custom.key', cert: 'path-to-custom.crt' }
+      logFileChanges: true,
+      logLevel: 'silent',
+      logPrefix: 'sync',
+      middleware,
+      minify: false,
+      notify: true,
+      open,
+      // port: 3000,
+      // server: dir,
+      server: {
+        baseDir: dir
+        // index: 'index.html',
+        // directory: true
       },
-      options: {
-        ignored: '*.min.css'
+      snippetOptions: {
+        // ignorePaths: 'templates/*.html',
+        rule: {
+          match: /$/,
+          fn: (snippet, match) => snippet + match
+        }
       }
-    }],*/
-    /*ghostMode: {
-      clicks: true,
-      forms: true,
-      scroll: false
-    }*/
-    // host: '192.168.1.1'
-    injectChanges: true,
-    // injectFileTypes: ['less'],
-    // https: true,
-    // https: { key: 'path-to-custom.key', cert: 'path-to-custom.crt' }
-    logFileChanges: true,
-    logLevel: 'silent',
-    logPrefix: 'sync',
-    middleware,
-    minify: false,
-    notify: true,
-    open,
-    // port: 3000,
-    // server: dir,
-    server: {
-      baseDir: dir
-      // index: 'index.html',
-      // directory: true
-    },
-    snippetOptions: {
-      // ignorePaths: 'templates/*.html',
-      rule: {
-        match: /$/,
-        fn: (snippet, match) => snippet + match
-      }
-    }
-    // timestamps: false
+      // timestamps: false
+    })
   })
   .then(config => {
     return Promise.resolve(browserSync.create('tool'))
@@ -65,7 +70,7 @@ module.exports = ({
     }))
   })
   .then(bs => {
-    console.timeEnd('browser-sync create&init')
+    console.timeEnd('browser-sync init')
     if (watch){
       const watcher = bs.watch(files, {
         ignored: 'fixtures/*.css.map'
