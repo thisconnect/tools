@@ -46,7 +46,7 @@
     "karma-rollup-plugin": "^0.2.4",
     "karma-tap": "^3.1.1",
     "karma-tap-pretty-reporter": "^3.0.5",
-    "parse5": "^2.2.3",
+    "parse5": "^3.0.0",
     "postcss": "^5.2.6",
     "postcss-copy": "^6.0.0",
     "postcss-cssnext": "^2.9.0",
