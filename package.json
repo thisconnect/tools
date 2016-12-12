@@ -17,7 +17,7 @@
     "url": "https://github.com/thisconnect/tools/issues"
   },
   "dependencies": {
-    "babel-preset-es2015-rollup": "^1.2.0",
+    "babel-preset-es2015-rollup": "^2.0.0",
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-3": "^6.17.0",
     "boxen": "^0.8.1",
