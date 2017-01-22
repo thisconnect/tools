@@ -53,6 +53,7 @@ module.exports = ({
   write = true,
   libs = false,
   minify = true,
+  sourceMap = true,
   context
 }) => {
 
@@ -89,7 +90,7 @@ module.exports = ({
       //   'react-dom': 'ReactDOM'
       // },
       indent: false,
-      sourceMap: true
+      sourceMap
     })
   })
 }
