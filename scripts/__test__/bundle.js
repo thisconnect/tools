@@ -1,6 +1,6 @@
 const test = require('tape')
 const { readFile, rm } = require('fildes-extra')
-const { dirname, resolve, relative } = require('path')
+const { dirname, resolve } = require('path')
 const bundle = require('../bundle.js')
 
 test('cleanup', t => {
@@ -12,6 +12,7 @@ test('cleanup', t => {
 test('bundle es6 modules', t => {
   const src = resolve(__dirname, 'fixtures/entry.js')
   const dest = resolve(__dirname, 'build/bundle/bundle.js')
+  const srcMapPath = '../../fixtures/entry.js'
 
   bundle({ src, dest, minify: false })
   .then(() => readFile(dest))
@@ -19,9 +20,8 @@ test('bundle es6 modules', t => {
   .then(() => readFile(dest + '.map', { encoding: 'utf8' }))
   .then(map => JSON.parse(map))
   .then(({ version, sources }) => {
-    const relSrcPath = relative(dirname(dest), src)
     t.ok(version >= 3, 'sourcemap version >= 3')
-    t.ok(sources.indexOf(relSrcPath) > -1, `sources contain ${relSrcPath}`)
+    t.ok(sources.indexOf(srcMapPath) > -1, `sources contain ${srcMapPath}`)
   })
   .then(() => t.end())
   .catch(err => t.fail(err))
