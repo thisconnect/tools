@@ -78,7 +78,7 @@
   },
   "devDependencies": {
     "animate.css": "^3.5.2",
-    "browserify": "^13.3.0",
+    "browserify": "^14.0.0",
     "font-awesome": "^4.7.0",
     "node-fetch": "^1.6.3",
     "normalize.css": "^5.0.0"
