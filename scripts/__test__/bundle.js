@@ -1,6 +1,6 @@
 const test = require('tape')
 const { readFile, rm } = require('fildes-extra')
-const { dirname, resolve } = require('path')
+const { resolve } = require('path')
 const bundle = require('../bundle.js')
 
 test('cleanup', t => {
