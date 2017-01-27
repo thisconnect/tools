@@ -1,7 +1,7 @@
 const test = require('tape')
 const { join } = require('path')
 const { readFile, rm } = require('fildes-extra')
-const buildCSS = require('../')
+const buildCSS = require('../index.js')
 
 test('cleanup', t => {
   rm(join(__dirname, 'build/flat'))
