@@ -41,7 +41,7 @@ exports.size = ({ title, results }) => {
       + ': '
       + chalk.yellow.bold(prettyBytes(size))
       + ', '
-      + chalk.green.bold(key + ' gzip')
+      + chalk.green.bold('gzip')
       + ': '
       + chalk.yellow.bold(prettyBytes(min))
     )
