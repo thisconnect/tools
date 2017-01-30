@@ -8,7 +8,7 @@ exports.getAst = data => {
 }
 
 exports.toHTML = ast => {
-  if (ast.nodeName == '#document' || ast.nodeName == '#document-fragment'){
+  if (ast.nodeName == '#document' || ast.nodeName == '#document-fragment'){
     return Promise.resolve(serialize(ast))
   }
   return new Promise((resolve/*, reject*/) => {
