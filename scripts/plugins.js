@@ -8,7 +8,11 @@ const filesize = require('rollup-plugin-filesize')
 // const builtins = require('rollup-plugin-node-builtins')
 
 
-exports.getPlugins = ({ libs, minify, replace }) => {
+exports.getPlugins = ({
+  libs,
+  minify,
+  replace
+}) => {
   const plugins = []
 
   if (replace) {

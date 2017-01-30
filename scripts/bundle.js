@@ -4,7 +4,8 @@ const { getPlugins } = require('./plugins.js')
 const env = process.env.NODE_ENV || 'production'
 
 module.exports = ({
-  src, dest,
+  src,
+  dest,
   format = 'iife',
   write = true,
   libs = false,

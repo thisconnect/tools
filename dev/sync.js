@@ -98,7 +98,7 @@ module.exports = ({
       // console.log(pathname)
     }
     if (pathname.match(/\.js$/i)) {
-      // console.log(pathname)
+
       return bundleJS({
         src: resolve(dir + pathname),
         dest: resolve(dir + pathname.replace(/\.js$/, '.min.js')),
@@ -111,7 +111,7 @@ module.exports = ({
       .catch(err => console.log(err))
     }
     if (pathname.match(/\.css$/i)) {
-      // console.log('middleware', pathname)
+
       return bundleCSS({
         src: resolve(dir + pathname),
         dest: pathname,
