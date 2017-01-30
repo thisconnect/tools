@@ -24,6 +24,18 @@ test('document toHTML', t => {
 
 test('fragment toHTML', t => {
   const fragment = parseFragment('<div><p>3</p></div>')
+  toHTML(fragment)
+  .then(result => {
+    t.equal(typeof result, 'string')
+    t.equal(result, '<div><p>3</p></div>')
+    t.end()
+  })
+  .catch(err => t.fail(err))
+})
+
+
+test('node toHTML', t => {
+  const fragment = parseFragment('<div><p>3</p></div>')
   toHTML(fragment.childNodes[0])
   .then(result => {
     t.equal(typeof result, 'string')

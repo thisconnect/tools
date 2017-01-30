@@ -1,7 +1,6 @@
 const { parse, serialize, treeAdapters } = require('parse5')
 const adapter = treeAdapters.default
 
-
 exports.getAst = data => {
   return Promise.resolve(data)
   .then(data => Buffer.isBuffer(data) ? data.toString() : data)
@@ -9,7 +8,7 @@ exports.getAst = data => {
 }
 
 exports.toHTML = ast => {
-  if (ast.nodeName == '#document'){
+  if (ast.nodeName == '#document' || ast.nodeName == '#document-fragment'){
     return Promise.resolve(serialize(ast))
   }
   return new Promise((resolve/*, reject*/) => {
