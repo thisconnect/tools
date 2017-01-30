@@ -1,7 +1,7 @@
 const test = require('tape')
 const { resolve } = require('path')
 const { readFile, rm } = require('fildes-extra')
-const inlineHTML = require('../inline.js')
+const inlineHTML = require('../index.js')
 
 test('cleanup', t => {
   rm(resolve(__dirname, 'build'))

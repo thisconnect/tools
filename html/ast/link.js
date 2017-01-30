@@ -37,7 +37,7 @@ const inline = (links, options) => {
   }))
 }
 
-exports.inlineStylesheets = (nodes, options) => {
+exports.inlineLinks = (nodes, options) => {
   return search(nodes, 'link')
   .then(links => links.filter(({ attrs }) => {
     let rel = false

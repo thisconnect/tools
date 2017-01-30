@@ -30,6 +30,7 @@ module.exports = ast => {
   // const head = html.childNodes[0]
   // const body = html.childNodes[1]
   return minify(html.childNodes)
+  .then(() => ast)
 }
 
 // function trimTitle(head){

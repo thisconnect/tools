@@ -36,7 +36,7 @@ const inline = (svgs, options) => {
   }))
 }
 
-exports.inlineSvgs = (nodes, options) => {
+exports.inlineImgs = (nodes, options) => {
   return findNodes(nodes, 'img')
   .then(imgs => imgs.filter(({ attrs }) => {
     for (let attr of attrs){
