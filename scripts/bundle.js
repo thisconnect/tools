@@ -1,51 +1,7 @@
 const rollup = require('rollup').rollup
-const pluginNPM = require('rollup-plugin-node-resolve')
-const pluginCommonjs = require('rollup-plugin-commonjs')
-// const pluginJson = require('rollup-plugin-json')
-const pluginBabel = require('rollup-plugin-babel')
-const pluginReplace = require('rollup-plugin-replace')
-const pluginUglify = require('rollup-plugin-uglify')
-const pluginFilesize = require('rollup-plugin-filesize')
-// const builtins = require('rollup-plugin-node-builtins')
+const { getPlugins } = require('./plugins.js')
 
 const env = process.env.NODE_ENV || 'production'
-
-const replace = pluginReplace({
-  'process.env.NODE_ENV': JSON.stringify(env)
-})
-
-const npm = pluginNPM({
-  jsnext: true
-})
-
-const commonjs = pluginCommonjs({
-  include: 'node_modules/**',
-  namedExports: {
-    'node_modules/react/react.js': ['Component', 'createElement']
-  }
-})
-
-const babel = pluginBabel({
-  babelrc: false,
-  // exclude: 'node_modules/**',
-  presets: ['react', 'stage-3', 'es2015-rollup']
-})
-
-const uglify = pluginUglify({
-  compress: {
-    screw_ie8: true,
-    warnings: false
-  }
-})
-
-const filesize = pluginFilesize({
-  format: {
-    // base: 10,
-    exponent: 0
-    // standard: 'iec',
-    // bits: true
-  }
-})
 
 module.exports = ({
   src, dest,
@@ -54,30 +10,23 @@ module.exports = ({
   libs = false,
   minify = true,
   sourceMap = true,
-  context
-}) => {
-
-  const plugins = libs ? [
-    replace, npm, commonjs, babel
-  ] : [
-    replace, babel
-  ]
-
-  if (minify) {
-    plugins.push(uglify)
+  context,
+  replace = {
+    'process.env.NODE_ENV': JSON.stringify(env)
   }
-
-  plugins.push(filesize)
-
+}) => {
   return rollup({
     context,
     entry: src,
     // external: ['date-fns/format', 'marked', 'react', 'react-dom'],
-    plugins
+    plugins: getPlugins({ libs, minify, replace })
   })
   .then(bundle => {
-    if (!write){
-      return bundle.generate({ format, sourceMap: 'inline' })
+    if (!write) {
+      return bundle.generate({
+        format,
+        sourceMap: sourceMap ? 'inline' : false
+      })
     }
     return bundle.write({
       banner: '// App',

@@ -1,4 +1,4 @@
-import { foo } from './module.js'
+import { foo } from './modules/module.js'
 
 const bar = 'lala'
 const test = foo(bar)

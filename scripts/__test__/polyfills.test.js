@@ -10,7 +10,6 @@ test('cleanup', t => {
 })
 
 test('bundle polyfills', t => {
-  // const entry = resolve(__dirname, '../polyfill/all.js')
   const dest = resolve(__dirname, 'build/polyfills/polyfills.js')
 
   polyfill({ dest })
