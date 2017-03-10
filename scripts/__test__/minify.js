@@ -10,7 +10,7 @@ test('minify', t => {
       console.log(long * 2)
     })(1)
   `)
-  .then(min => t.equal(min, '!function(o){console.log(2)}(1);'))
+  .then(min => t.equal(min, '!function(o){console.log(2)}();'))
   .then(() => t.end())
   .catch(err => t.fail(err))
 })
