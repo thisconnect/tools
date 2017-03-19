@@ -1,24 +1,25 @@
 const browserSync = require('browser-sync')
 const { parse } = require('url')
 const { resolve } = require('path')
-const bundleCSS = require('../styles/bundle.js')
-const bundleJS = require('../scripts/bundle.js')
+const bundleCSS = require('../../styles/bundle.js')
+const bundleJS = require('../../scripts/bundle.js')
 const { fstat } = require('fildes')
 
 module.exports = ({
   dir,
-  open = true,
+  open = 'ui',
   watch = true
 } = {}) => {
   const files = ['*.html', '*.css', 'styles/*.css', '*.js', 'scripts/*.js'].map(f => resolve(dir, f))
-  console.time('browser-sync init')
+  // console.time('browser-sync init')
 
   return fstat(dir)
   .then(stat => stat.isDirectory())
   .then(() => {
     return Promise.resolve({
-      browser: ['google chrome'],
+      browser: ['google chrome'], // 'firefox'
       codeSync: true,
+      // cors: false,
       // files: 'app/css/*.less',
       /*files: [{
         match: files,
@@ -44,9 +45,14 @@ module.exports = ({
       logPrefix: 'sync',
       middleware,
       minify: false,
-      notify: true,
-      open,
+      notify: { styles: { bottom: 0, right: 0, top: 'auto' } },
       // port: 3000,
+      online: false,
+      open,
+      // rewriteRules: [{
+      //   match: /(\.min)\.(js|css)$/g,
+      //   replace: '.$2'
+      // }],
       // server: dir,
       server: {
         baseDir: dir
@@ -54,7 +60,7 @@ module.exports = ({
         // directory: true
       },
       snippetOptions: {
-        // ignorePaths: 'templates/*.html',
+        // ignorePaths: 'google*.html',
         rule: {
           match: /$/,
           fn: (snippet, match) => snippet + match
@@ -70,7 +76,7 @@ module.exports = ({
     }))
   })
   .then(bs => {
-    console.timeEnd('browser-sync init')
+    // console.timeEnd('browser-sync init')
     if (watch){
       const watcher = bs.watch(files, {
         ignored: 'fixtures/*.css.map'
@@ -94,10 +100,17 @@ module.exports = ({
 
   function middleware(req, res, next) {
     const { pathname } = parse(req.url)
+    const onError = err => {
+      console.error(err)
+      res.writeHead(404, { 'Content-Type': 'text/plain' })
+      res.end()
+    }
+
     if (pathname.match(/\.map$/i)) {
       // console.log(pathname)
     }
     if (pathname.match(/\.js$/i)) {
+      console.log(1, pathname)
 
       return bundleJS({
         src: resolve(dir + pathname),
@@ -108,7 +121,7 @@ module.exports = ({
         res.setHeader('Content-Type', 'application/javascript')
         res.end(code + '\n//# sourceMappingURL=' + map.toUrl())
       })
-      .catch(err => console.log(err))
+      .catch(onError)
     }
     if (pathname.match(/\.css$/i)) {
 
@@ -123,7 +136,7 @@ module.exports = ({
         res.setHeader('Content-Type', 'text/css')
         res.end(result.css)
       })
-      .catch(err => console.log(err))
+      .catch(onError)
     }
     next()
   }

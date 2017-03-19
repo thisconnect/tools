@@ -1,5 +1,5 @@
 const test = require('tape')
-const sync = require('../sync.js')
+const sync = require('../sync')
 const fetch = require('node-fetch')
 const { resolve } = require('path')
 
