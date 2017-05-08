@@ -5,7 +5,6 @@ module.exports = (code) => {
   .then(data => Buffer.isBuffer(data) ? data.toString() : data)
   .then(code => {
     return minify(code, {
-      fromString: true,
       mangle: true,
       output: {
         // https://github.com/mishoo/UglifyJS2#beautifier-options
@@ -13,7 +12,6 @@ module.exports = (code) => {
         beautify: false,
         // indent_level: 2,
         comments: false,
-        screw_ie8: true
         // source_map: null
       }
     })
