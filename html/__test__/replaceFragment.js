@@ -16,5 +16,5 @@ test('replace fragment', t => {
     t.equal(serialize(doc), '<!DOCTYPE html><html><head></head><body><svg><path></path></svg><p>2</p></body></html>')
     t.end()
   })
-  .catch(err => t.fail(err))
+  .catch(t.end)
 })

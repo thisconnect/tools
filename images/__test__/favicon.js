@@ -12,5 +12,5 @@ test('create ico from png', t => {
     t.ok(ico instanceof Buffer, 'ico is Buffer')
   })
   .then(() => t.end())
-  .catch(err => t.fail(err))
+  .catch(t.end)
 })

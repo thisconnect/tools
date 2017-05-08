@@ -14,7 +14,7 @@ test('append fragments to a node', t => {
     t.equal(result, expected, 'contains 1 &amp; 2 <span>3</span>')
   })
   .then(() => t.end())
-  .catch(err => t.fail(err))
+  .catch(t.end)
 })
 
 test('append fragment after node', t => {
@@ -26,5 +26,5 @@ test('append fragment after node', t => {
     t.equal(result, expected, 'expects <div></div><div>4</div>')
   })
   .then(() => t.end())
-  .catch(err => t.fail(err))
+  .catch(t.end)
 })

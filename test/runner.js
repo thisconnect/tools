@@ -1,6 +1,6 @@
 const { Server } = require('karma')
 const buble = require('rollup-plugin-buble')
-const tapSpec = require('tap-spec')
+// const tapSpec = require('tap-spec')
 const { resolve } = require('path')
 
 const { TRAVIS } = process.env // TRAVIS_OS_NAME
@@ -75,7 +75,7 @@ module.exports = ({
     },*/
     singleRun: true,
     tapReporter: {
-      prettify: tapSpec
+      // prettify: tapSpec
     }
   })
   .then(config => {

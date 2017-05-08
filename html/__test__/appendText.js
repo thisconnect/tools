@@ -12,5 +12,5 @@ test('append code to script', t => {
     t.equal(result, `<script>${code}</script>`, 'script contains code')
   })
   .then(() => t.end())
-  .catch(err => t.fail(err))
+  .catch(t.end)
 })

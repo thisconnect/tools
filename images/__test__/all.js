@@ -7,7 +7,7 @@ const { getSize } = require('../size.js')
 test('cleanup', t => {
   rm(resolve(__dirname, 'build'))
   .then(() => t.end())
-  .catch(err => t.fail(err))
+  .catch(t.end)
 })
 
 test('compress', t => {
@@ -23,7 +23,7 @@ test('compress', t => {
     t.ok(sizes[1] < sizes[0], 'size of compressed image is smaller')
   })
   .then(() => t.end())
-  .catch(err => t.fail(err))
+  .catch(t.end)
 })
 
 
@@ -41,7 +41,7 @@ test('resize and compress', t => {
     t.ok(sizes[1].height < sizes[0].height, 'height of resized image is smaller')
   })
   .then(() => t.end())
-  .catch(err => t.fail(err))
+  .catch(t.end)
 })
 
 test.skip('many', t => {
@@ -62,5 +62,6 @@ test.skip('many', t => {
       t.end()
     })
   })
+  .catch(t.end)
 
 })

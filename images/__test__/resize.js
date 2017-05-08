@@ -15,7 +15,7 @@ test('resize png', t => {
     t.equal(size.width, 48, 'has width of 48')
   })
   .then(() => t.end())
-  .catch(err => t.fail(err))
+  .catch(t.end)
 })
 
 test.skip('resize many', t => {

@@ -6,7 +6,7 @@ const inlineHTML = require('../index.js')
 test('cleanup', t => {
   rm(resolve(__dirname, 'build2'))
   .then(() => t.end())
-  .catch(err => t.fail(err))
+  .catch(t.end)
 })
 
 test('replace HTML string', t => {
@@ -24,5 +24,5 @@ test('replace HTML string', t => {
     t.ok(result.indexOf('<footer>©' + new Date().getFullYear() + ' Foo</footer>') > -1, 'has footer copy right')
   })
   .then(() => t.end())
-  .catch(err => t.fail(err))
+  .catch(t.end)
 })

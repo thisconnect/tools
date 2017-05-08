@@ -23,8 +23,5 @@ test('bundle polyfills', t => {
     t.ok(sources.indexOf(relSrcPath) > -1, `sources contain ${relSrcPath}`)
   })*/
   .then(() => t.end())
-  .catch(err => {
-    console.log(err)
-    t.fail(err)
-  })
+  .catch(t.end)
 })

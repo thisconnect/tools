@@ -27,5 +27,5 @@ test('inline HTML', t => {
     })
   })
   .then(() => t.end())
-  .catch(err => t.fail(err))
+  .catch(t.end)
 })

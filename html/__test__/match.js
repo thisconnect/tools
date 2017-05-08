@@ -11,7 +11,7 @@ test('getNodesByTagName', t => {
     t.equal(nodes[0].tagName, 'span', 'element is a span')
     t.end()
   })
-  .catch(err => t.fail(err))
+  .catch(t.end)
 })
 
 test('getNodeById', t => {
@@ -23,7 +23,7 @@ test('getNodeById', t => {
     t.equal(node.attrs[0].value, 'foo', 'first attribute has value foo')
     t.end()
   })
-  .catch(err => t.fail(err))
+  .catch(t.end)
 })
 
 /*
@@ -40,7 +40,7 @@ test('match by tagName', t => {
     return;
 
   })
-  .catch(err => t.fail(err))
+  .catch(t.end)
 })
 
 test('match descendant', t => {
@@ -54,7 +54,7 @@ test('match descendant', t => {
     t.equal(typeof nodes, 'object', 'is object')
     t.end()
   })
-  .catch(err => t.fail(err))
+  .catch(t.end)
 })
 
 test('match by classNames', t => {
@@ -67,6 +67,6 @@ test('match by classNames', t => {
     t.equal(typeof ast, 'object', 'is object')
     t.end()
   })
-  .catch(err => t.fail(err))
+  .catch(t.end)
 })
 */

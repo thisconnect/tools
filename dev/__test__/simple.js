@@ -30,7 +30,7 @@ test('fetch browser-sync', t => {
       t.end()
     })
   })
-  .catch(err => t.fail(err))
+  .catch(t.end)
 })
 
 test('fail if dir doesnt exist', t => {

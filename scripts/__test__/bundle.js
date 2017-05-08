@@ -24,5 +24,5 @@ test('bundle es6 modules', t => {
     t.ok(sources.indexOf(srcMapPath) > -1, `sources contain ${srcMapPath}`)
   })
   .then(() => t.end())
-  .catch(err => t.fail(err))
+  .catch(t.end)
 })

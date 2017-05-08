@@ -21,5 +21,5 @@ test.skip('test karma runner', t => {
   // .then(exitCode => console.log())
   .then(exitCode => t.equal(exitCode, 0, 'exitCode is 0'))
   .then(() => t.end())
-  .catch(err => t.fail(err))
+  .catch(t.end)
 })

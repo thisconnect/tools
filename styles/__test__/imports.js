@@ -6,7 +6,7 @@ const buildCSS = require('../')
 test('cleanup', t => {
   rm(join(__dirname, 'build/dirs'))
   .then(() => t.end())
-  .catch(err => t.fail(err))
+  .catch(t.end)
 })
 
 test('build CSS to build/dirs', t => {
@@ -19,5 +19,5 @@ test('build CSS to build/dirs', t => {
   .then(() => readFile(dest.replace('.css', '.min.css'), { encoding: 'utf8' }))
   .then(min => t.ok(min.indexOf(`url(../fonts/fontawesome-`) > -1, 'minified path begins with url(../fonts/'))
   .then(() => t.end())
-  .catch(err => t.fail(err))
+  .catch(t.end)
 })

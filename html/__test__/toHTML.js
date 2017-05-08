@@ -19,7 +19,7 @@ test('document toHTML', t => {
     t.equal(result, '<p>2</p>', 'is p element')
     t.end()
   })
-  .catch(err => t.fail(err))
+  .catch(t.end)
 })
 
 test('fragment toHTML', t => {
@@ -30,7 +30,7 @@ test('fragment toHTML', t => {
     t.equal(result, '<div><p>3</p></div>')
     t.end()
   })
-  .catch(err => t.fail(err))
+  .catch(t.end)
 })
 
 
@@ -42,5 +42,5 @@ test('node toHTML', t => {
     t.equal(result, '<div><p>3</p></div>')
     t.end()
   })
-  .catch(err => t.fail(err))
+  .catch(t.end)
 })

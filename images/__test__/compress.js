@@ -17,7 +17,7 @@ test('compress svg', t => {
     t.ok(compressed < original, 'compressed svg is smaller')
     t.end()
   })
-  .catch(err => t.fail(err))
+  .catch(t.end)
 })
 
 test('optimizeSVG with plugins', t => {
@@ -38,7 +38,7 @@ test('optimizeSVG with plugins', t => {
     t.ok(compressed < original, 'compressed svg is smaller')
     t.end()
   })
-  .catch(err => t.fail(err))
+  .catch(t.end)
 })
 
 test('compress png', t => {
@@ -53,7 +53,7 @@ test('compress png', t => {
     t.ok(compressed < original, 'compressed svg is smaller')
     t.end()
   })
-  .catch(err => t.fail(err))
+  .catch(t.end)
 })
 
 test.skip('compress many', t => {
@@ -69,5 +69,5 @@ test.skip('compress many', t => {
   .then(() => {
     t.end()
   })
-  .catch(err => t.fail(err))
+  .catch(t.end)
 })
