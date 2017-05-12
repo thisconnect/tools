@@ -52,7 +52,7 @@
     "postcss": "^6.0.0",
     "postcss-copy": "^7.0.0",
     "postcss-cssnext": "^2.10.0",
-    "postcss-import": "^9.1.0",
+    "postcss-import": "^10.0.0",
     "postcss-pxtorem": "^4.0.1",
     "postcss-reporter": "^3.0.0",
     "pretty-bytes": "^4.0.2",
