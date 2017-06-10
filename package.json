@@ -31,7 +31,7 @@
     "eslint-plugin-promise": "^3.5.0s",
     "eslint-plugin-react": "^7.0.0",
     "faucet": "0.0.1",
-    "fildes": "^1.0.5",
+    "fildes": "^2.0.0",
     "fildes-extra": "^0.6.0",
     "glob": "^7.1.1",
     "gzip-size": "^3.0.0",
