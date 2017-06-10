@@ -1,9 +1,9 @@
-const { readFile, writeFile, fstat } = require('fildes')
+const { readFile, writeFile, stats } = require('fildes')
 const compress = require('./compress.js')
 const { resize } = require('./size.js')
 
 module.exports = ({ src, dest, width }) => {
-  return fstat(dest)
+  return stats(dest)
   .then(stat => stat.isFile())
   // .then(() => console.log('file exists', output))
   .catch(() => {
