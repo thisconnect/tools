@@ -3,7 +3,7 @@ const { parse } = require('url')
 const { resolve } = require('path')
 const bundleCSS = require('../../styles/bundle.js')
 const bundleJS = require('../../scripts/bundle.js')
-const { fstat } = require('fildes')
+const { stats } = require('fildes')
 
 module.exports = ({
   dir,
@@ -13,7 +13,7 @@ module.exports = ({
   const files = ['*.html', '*.css', 'styles/*.css', '*.js', 'scripts/*.js'].map(f => resolve(dir, f))
   // console.time('browser-sync init')
 
-  return fstat(dir)
+  return stats(dir)
   .then(stat => stat.isDirectory())
   .then(() => {
     return Promise.resolve({
