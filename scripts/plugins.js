@@ -47,7 +47,7 @@ exports.getPlugins = ({
   if (minify) {
     plugins.push(uglify({
       compress: {
-        screw_ie8: true,
+        ie8: true,
         warnings: false
       }
     }))

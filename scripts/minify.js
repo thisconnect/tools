@@ -11,9 +11,10 @@ module.exports = (code) => {
         quote_style: 1,
         beautify: false,
         // indent_level: 2,
-        comments: false,
+        comments: false
         // source_map: null
-      }
+      },
+      ie8: true
     })
   })
   .then(result => result.code)

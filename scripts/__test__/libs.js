@@ -12,7 +12,6 @@ test('cleanup', t => {
 test('bundle es6 modules', t => {
   const src = resolve(__dirname, 'fixtures/libs.js')
   const dest = resolve(__dirname, 'build/libs/bundle.js')
-  const srcMapPath = '../../fixtures/libs.js'
 
   bundle({ src, dest, libs: true })
   .then(() => readFile(dest))
@@ -25,7 +24,14 @@ test('bundle es6 modules', t => {
   .then(map => JSON.parse(map))
   .then(({ version, sources }) => {
     t.ok(version >= 3, 'sourcemap version >= 3')
-    t.ok(sources.indexOf(srcMapPath) > -1, `sources contain ${srcMapPath}`)
+    t.ok(
+      sources.includes('../../fixtures/node_modules/module-commonjs/index.js'),
+      `sources contain module-commonjs`
+    )
+    t.ok(
+      sources.includes('../../fixtures/node_modules/module-es6/index.js'),
+      `sources contain module-es6`
+    )
   })
   .then(() => t.end())
   .catch(t.end)
