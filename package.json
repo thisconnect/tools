@@ -23,7 +23,7 @@
     "boxen": "^1.0.0",
     "browser-sync": "^2.18.12",
     "buble": "^0.15.2",
-    "chalk": "^1.1.3",
+    "chalk": "^2.0.0",
     "css-what": "^2.1.0",
     "cssnano": "^3.10.0",
     "es6-promise": "^4.1.0",
