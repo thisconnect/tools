@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node styles/index.js",
-    "test": "tape **/__test__/*.js | tap-difflet",
+    "test": "tape **/__test__/*.js | faucet",
     "build": "npm run build:tape",
     "build:tape": "browserify test/tape.js -s tape | uglifyjs -m -c --ie8 -b beautify=false,preamble=\"'/* eslint-disable */'\" > test/build/tape.min.js",
     "lint": "eslint --cache --ignore-path .gitignore ."
@@ -30,6 +30,7 @@
     "eslint": "^4.0.0",
     "eslint-plugin-promise": "^3.5.0s",
     "eslint-plugin-react": "^7.1.0",
+    "faucet": "0.0.1",
     "fildes": "^2.0.0",
     "fildes-extra": "^0.6.0",
     "glob": "^7.1.2",
@@ -70,7 +71,6 @@
     "stylelint": "^8.0.0",
     "stylelint-config-standard": "^17.0.0",
     "svgo": "^0.7.2",
-    "tap-difflet": "^0.7.0",
     "tape": "^4.6.3",
     "to-ico": "^1.1.4",
     "uglify-js": "^3.0.17",
