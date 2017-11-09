@@ -4,7 +4,7 @@ module.exports = ({ result, src, dest }) => {
   return cssnano.process(result.css, {
     map: {
       inline: false,
-      prev: result.map
+      prev: result.map.toString()
     },
     from: src,
     to: dest,
