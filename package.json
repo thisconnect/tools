@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node styles/index.js",
-    "test": "tape **/__test__/*.js",
+    "test": "tape {**,!node_modules}/__test__/*.js",
     "build": "npm run build:tape",
     "build:tape": "browserify test/tape.js -s tape | uglifyjs -m -c --ie8 -b beautify=false,preamble=\"'/* eslint-disable */'\" > test/build/tape.min.js",
     "lint": "eslint --cache --ignore-path .gitignore ."
@@ -49,7 +49,7 @@
     "karma-rollup-plugin": "^0.2.4",
     "karma-tap": "^3.1.1",
     "karma-tap-pretty-reporter": "^3.0.5",
-    "parse5": "^3.0.2",
+    "parse5": "^3.0.3",
     "postcss": "6.0.14",
     "postcss-copy": "7.1.0",
     "postcss-cssnext": "^3.0.2",
