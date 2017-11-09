@@ -14,15 +14,14 @@ const replace = (node, path, { src, dest }) => {
     file = resolve(src, path)
     return readFile(file)
     .then(buffer => {
-      return new Promise((resolve/*, reject*/) => {
-        const svgo = new SVGO({
-          plugins: [
-            { removeXMLNS: true }
-          ]
-        })
-        svgo.optimize(buffer.toString(), result => resolve(result.data))
+      const svgo = new SVGO({
+        plugins: [
+          { removeXMLNS: true }
+        ]
       })
+      return svgo.optimize(buffer.toString())
     })
+    .then(result => result.data)
   })
   .then(data => replaceFragment(node, data))
   .then(node => removeAttr(node, 'xmlns'))
