@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node styles/index.js",
     "test": "tape {**,!node_modules}/__test__/*.js",
+    "pretest": "npm run build",
     "build": "npm run build:tape",
     "build:tape": "browserify test/tape.js -s tape | uglifyjs -m -c --ie8 -b beautify=false,preamble=\"'/* eslint-disable */'\" > test/build/tape.min.js",
     "lint": "eslint --cache --ignore-path .gitignore ."
