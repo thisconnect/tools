@@ -14,7 +14,7 @@ cache:
 language: node_js
 node_js:
   - '6'
-  - 'stable'
+  - '8'
 os:
   - linux
 sudo: false
