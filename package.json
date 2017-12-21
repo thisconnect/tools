@@ -44,7 +44,7 @@
     "imagemin-svgo": "^6.0.0",
     "imagemin-webp": "^4.0.0",
     "jimp": "^0.2.28",
-    "karma": "^1.7.1",
+    "karma": "^2.0.0",
     "karma-chrome-launcher": "^2.2.0",
     "karma-firefox-launcher": "^1.0.1",
     "karma-rollup-plugin": "^0.2.4",
