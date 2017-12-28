@@ -9,7 +9,9 @@
     "pretest": "npm run build",
     "build": "npm run build:tape",
     "build:tape": "browserify test/tape.js -s tape | uglifyjs -m -c --ie8 -b beautify=false,preamble=\"'/* eslint-disable */'\" > test/build/tape.min.js",
-    "lint": "eslint --cache --ignore-path .gitignore ."
+    "lint": "eslint --cache --ignore-path .gitignore .",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "repository": "thisconnect/tools",
   "author": "Enrique Erne",
@@ -76,7 +78,8 @@
     "tape": "^4.8.0",
     "to-ico": "^1.1.5",
     "uglify-js": "^3.3.2",
-    "whatwg-fetch": "^2.0.3"
+    "whatwg-fetch": "^2.0.3",
+    "snyk": "^1.62.2"
   },
   "devDependencies": {
     "animate.css": "^3.5.2",
@@ -84,5 +87,6 @@
     "font-awesome": "^4.7.0",
     "node-fetch": "^1.7.3",
     "normalize.css": "^7.0.0"
-  }
+  },
+  "snyk": true
 }
