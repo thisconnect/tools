@@ -3,7 +3,7 @@ const runner = require('../runner.js')
 
 const { TRAVIS, TRAVIS_OS_NAME } = process.env
 
-test.skip('test karma runner', t => {
+test('test karma runner', t => {
 
   if (TRAVIS && TRAVIS_OS_NAME == 'osx'){
     t.comment('karma currently doesnt work on osx-travis')

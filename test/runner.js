@@ -47,7 +47,7 @@ module.exports = ({
     logLevel: 'WARN',
     // port: 9876,
     plugins: [
-      'karma-rollup-plugin',
+      'karma-rollup-preprocessor',
       'karma-tap',
       'karma-tap-pretty-reporter',
       'karma-chrome-launcher',
@@ -58,14 +58,17 @@ module.exports = ({
     // reporters: ['tap-pretty'],
     rollupPreprocessor: {
       external: ['tape'],
-      format: 'iife',
-      globals: {
-        'tape': 'tape'
+      output: {
+        format: 'iife',
+
+        globals: {
+          'tape': 'tape'
+        },
+        sourcemap: 'inline'
       },
       plugins: [
         buble()
-      ],
-      sourceMap: 'inline'
+      ]
     },
 /*    customLaunchers: {
       Chrome_travis_ci: {
@@ -109,7 +112,7 @@ module.exports = ({
 
       server.on('browsers_change', (/*browsers*/) => {
         // console.log('browsers_change')
-        console.log('\n____browsers_change')
+        // console.log('\n____browsers_change')
       })
       server.on('browsers_ready', (/*browsers*/) => {
         // console.log('browsers_change')
