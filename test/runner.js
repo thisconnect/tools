@@ -19,7 +19,7 @@ module.exports = ({
 
   const browsers = TRAVIS ? ['Firefox'] : [
     (TRAVIS) ? 'Chrome_travis_ci' : 'Chrome', //  && TRAVIS_OS_NAME == 'linux'
-    'Chrome', 'Firefox'
+    'Firefox'
   ]
 
   return Promise.resolve({
@@ -33,7 +33,7 @@ module.exports = ({
     },
     browserDisconnectTimeout: 3000,
     browserDisconnectTolerance: 0,
-    browserNoActivityTimeout: 25000,
+    browserNoActivityTimeout: 10000,
     captureTimeout: 10000,
     // client: { captureConsole: false },
     colors: true,
@@ -93,42 +93,42 @@ module.exports = ({
         }
       })
 
-      server.on('browser_register', browser => {
-        console.log(`\n____browser_register ${browser.name}`)
-      })
-
-      server.on('browser_error', (browser, error) => {
-        console.log('\n____browser_error', error)
-        // console.log('browser_error', browser, error)
-      })
-
-      server.on('browser_start', (browser, info) => {
-        console.log(`\n____browser_start ${browser.name}`, info)
-      })
-
-      server.on('browser_complete', (browser, result) => {
-        console.log(`\n____browser_complete ${browser.name}`, result)
-      })
-
-      server.on('browsers_change', (/*browsers*/) => {
-        // console.log('browsers_change')
-        // console.log('\n____browsers_change')
-      })
-      server.on('browsers_ready', (/*browsers*/) => {
-        // console.log('browsers_change')
-        console.log('\n____browsers_ready')
-      })
-
-      server.on('run_start', (/*browsers*/) => {
-        // console.log('run_start')
-        console.log('\n____run_start')
-      })
-
-
-      server.on('run_complete', (browsers, results) => {
-        console.log('\n____run_complete', results)
-        // console.log('run_complete', browsers, results)
-      })
+      // server.on('browser_register', browser => {
+      //   console.log(`\n____browser_register ${browser.name}`)
+      // })
+      //
+      // server.on('browser_error', (browser, error) => {
+      //   console.log('\n____browser_error', error)
+      //   // console.log('browser_error', browser, error)
+      // })
+      //
+      // server.on('browser_start', (browser, info) => {
+      //   console.log(`\n____browser_start ${browser.name}`, info)
+      // })
+      //
+      // server.on('browser_complete', (browser, result) => {
+      //   console.log(`\n____browser_complete ${browser.name}`, result)
+      // })
+      //
+      // server.on('browsers_change', (/*browsers*/) => {
+      //   // console.log('browsers_change')
+      //   // console.log('\n____browsers_change')
+      // })
+      // server.on('browsers_ready', (/*browsers*/) => {
+      //   // console.log('browsers_change')
+      //   console.log('\n____browsers_ready')
+      // })
+      //
+      // server.on('run_start', (/*browsers*/) => {
+      //   // console.log('run_start')
+      //   console.log('\n____run_start')
+      // })
+      //
+      //
+      // server.on('run_complete', (browsers, results) => {
+      //   console.log('\n____run_complete', results)
+      //   // console.log('run_complete', browsers, results)
+      // })
 
       server.start()
 /*
