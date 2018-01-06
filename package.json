@@ -51,7 +51,7 @@
     "karma-tap": "^3.1.1",
     "karma-tap-pretty-reporter": "^3.0.5",
     "parse5": "^3.0.3",
-    "postcss": "6.0.15",
+    "postcss": "6.0.16",
     "postcss-copy": "7.1.0",
     "postcss-cssnext": "^3.0.2",
     "postcss-import": "^11.0.0",
