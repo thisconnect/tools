@@ -50,7 +50,7 @@
     "karma-rollup-preprocessor": "^5.0.2",
     "karma-tap": "^3.1.1",
     "karma-tap-pretty-reporter": "^3.0.5",
-    "parse5": "^3.0.3",
+    "parse5": "^4.0.0",
     "postcss": "6.0.16",
     "postcss-copy": "7.1.0",
     "postcss-cssnext": "^3.0.2",
