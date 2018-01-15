@@ -6,9 +6,6 @@
   "scripts": {
     "start": "node styles/index.js",
     "test": "tape {**,!node_modules}/__test__/*.js",
-    "pretest": "npm run build",
-    "build": "npm run build:tape",
-    "build:tape": "browserify test/tape.js -s tape | uglifyjs -m -c --ie8 -b beautify=false,preamble=\"'/* eslint-disable */'\" > test/build/tape.min.js",
     "lint": "eslint --cache --ignore-path .gitignore ."
   },
   "repository": "thisconnect/tools",
@@ -44,12 +41,6 @@
     "imagemin-svgo": "^6.0.0",
     "imagemin-webp": "^4.1.0",
     "jimp": "^0.2.28",
-    "karma": "^2.0.0",
-    "karma-chrome-launcher": "^2.2.0",
-    "karma-firefox-launcher": "^1.1.0",
-    "karma-rollup-preprocessor": "^5.0.2",
-    "karma-tap": "^3.1.1",
-    "karma-tap-pretty-reporter": "^3.0.5",
     "parse5": "^4.0.0",
     "postcss": "6.0.16",
     "postcss-copy": "7.1.0",
@@ -80,7 +71,6 @@
   },
   "devDependencies": {
     "animate.css": "^3.5.2",
-    "browserify": "^15.0.0",
     "font-awesome": "^4.7.0",
     "node-fetch": "^1.7.3",
     "normalize.css": "^7.0.0"
