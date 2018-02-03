@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node styles/index.js",
     "test": "tape {**,!node_modules}/__test__/*.js",
-    "lint": "eslint --cache --ignore-path .gitignore ."
+    "lint": "eslint --cache --ignore-path .gitignore .",
+    "prettier": "prettier --write \"{,!node_modules/}**/*.js\""
   },
   "repository": "thisconnect/tools",
   "author": "Enrique Erne",

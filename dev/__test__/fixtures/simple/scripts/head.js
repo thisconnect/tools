@@ -1,1 +1,1 @@
-console.log('head.js?')
+console.log('head.js?');

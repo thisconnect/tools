@@ -1,3 +1,3 @@
-console.log('module')
+console.log('module');
 
-export default 2
+export default 2;

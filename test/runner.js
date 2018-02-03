@@ -1,26 +1,24 @@
-const { Server } = require('karma')
-const buble = require('rollup-plugin-buble')
+const { Server } = require('karma');
+const buble = require('rollup-plugin-buble');
 // const tapSpec = require('tap-spec')
-const { resolve } = require('path')
+const { resolve } = require('path');
 
-const { TRAVIS } = process.env // TRAVIS_OS_NAME
+const { TRAVIS } = process.env; // TRAVIS_OS_NAME
 
-module.exports = ({
-  basePath,
-  files
-}) => {
-
+module.exports = ({ basePath, files }) => {
   const preprocessors = files.reduce((a, b) => {
-    if (b.match(/\.js$/i)){
-      a[b] = ['rollup']
+    if (b.match(/\.js$/i)) {
+      a[b] = ['rollup'];
     }
-    return a
-  }, {})
+    return a;
+  }, {});
 
-  const browsers = TRAVIS ? ['Firefox'] : [
-    (TRAVIS) ? 'Chrome_travis_ci' : 'Chrome', //  && TRAVIS_OS_NAME == 'linux'
-    'Firefox'
-  ]
+  const browsers = TRAVIS
+    ? ['Firefox']
+    : [
+        TRAVIS ? 'Chrome_travis_ci' : 'Chrome', //  && TRAVIS_OS_NAME == 'linux'
+        'Firefox'
+      ];
 
   return Promise.resolve({
     autoWatch: false,
@@ -39,10 +37,7 @@ module.exports = ({
     colors: true,
     concurrency: 1,
     // exclude
-    files: [
-      resolve(__dirname, 'build/tape.min.js'),
-      ...files
-    ],
+    files: [resolve(__dirname, 'build/tape.min.js'), ...files],
     frameworks: ['tap'],
     logLevel: 'WARN',
     // port: 9876,
@@ -62,15 +57,13 @@ module.exports = ({
         format: 'iife',
 
         globals: {
-          'tape': 'tape'
+          tape: 'tape'
         },
         sourcemap: 'inline'
       },
-      plugins: [
-        buble()
-      ]
+      plugins: [buble()]
     },
-/*    customLaunchers: {
+    /*    customLaunchers: {
       Chrome_travis_ci: {
         base: 'Chrome',
         flags: ['--no-sandbox']
@@ -80,18 +73,17 @@ module.exports = ({
     tapReporter: {
       // prettify: tapSpec
     }
-  })
-  .then(config => {
+  }).then(config => {
     return new Promise((resolve, reject) => {
       const server = new Server(config, exitCode => {
         // process.exit(exitCode)
-        console.log('done!!! ', exitCode)
-        if (exitCode){
-          reject(exitCode)
+        console.log('done!!! ', exitCode);
+        if (exitCode) {
+          reject(exitCode);
         } else {
-          resolve(exitCode)
+          resolve(exitCode);
         }
-      })
+      });
 
       // server.on('browser_register', browser => {
       //   console.log(`\n____browser_register ${browser.name}`)
@@ -130,25 +122,21 @@ module.exports = ({
       //   // console.log('run_complete', browsers, results)
       // })
 
-      server.start()
-/*
+      server.start();
+      /*
       server.refreshFiles()
       .then(() => console.log('refreshFiles'))
       .catch(err => console.log(err))
       */
-
-    })
-  })
-
-}
+    });
+  });
+};
 
 /*
 
 
 
 */
-
-
 
 /*
 // The equivalent of karma run.

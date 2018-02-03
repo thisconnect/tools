@@ -1,68 +1,66 @@
-const { parse, serialize, treeAdapters } = require('parse5')
-const adapter = treeAdapters.default
+const { parse, serialize, treeAdapters } = require('parse5');
+const adapter = treeAdapters.default;
 
 exports.getAst = data => {
   return Promise.resolve(data)
-  .then(data => Buffer.isBuffer(data) ? data.toString() : data)
-  .then(html => parse(html))
-}
+    .then(data => (Buffer.isBuffer(data) ? data.toString() : data))
+    .then(html => parse(html));
+};
 
 exports.toHTML = ast => {
-  if (ast.nodeName == '#document' || ast.nodeName == '#document-fragment'){
-    return Promise.resolve(serialize(ast))
+  if (ast.nodeName == '#document' || ast.nodeName == '#document-fragment') {
+    return Promise.resolve(serialize(ast));
   }
-  return new Promise((resolve/*, reject*/) => {
-    const fragment = adapter.createDocumentFragment()
-    adapter.appendChild(fragment, ast)
-    resolve(serialize(fragment))
-  })
-}
+  return new Promise((resolve /*, reject*/) => {
+    const fragment = adapter.createDocumentFragment();
+    adapter.appendChild(fragment, ast);
+    resolve(serialize(fragment));
+  });
+};
 
 exports.findNodes = (nodes, nodeName) => {
-  const results = []
-  const que = [...nodes]
-  for (let node of que){
-    if (node.childNodes){
-      que.push(...node.childNodes)
+  const results = [];
+  const que = [...nodes];
+  for (let node of que) {
+    if (node.childNodes) {
+      que.push(...node.childNodes);
     }
-    if (node.nodeName == nodeName){
-      results.push(node)
+    if (node.nodeName == nodeName) {
+      results.push(node);
     }
   }
-  return Promise.all(results)
-}
+  return Promise.all(results);
+};
 
 exports.search = exports.childNodes = (nodes, nodeName) => {
-  const results = []
-  for (let node of nodes){
-    if (node.nodeName == nodeName){
-      results.push(node)
+  const results = [];
+  for (let node of nodes) {
+    if (node.nodeName == nodeName) {
+      results.push(node);
     }
   }
-  return Promise.resolve(results)
-}
+  return Promise.resolve(results);
+};
 
 exports.getHref = node => {
-  return Promise.resolve(node.attrs)
-  .then(attrs => {
-    for (let attr of attrs){
-      if (attr.name == 'href'){
-        return attr.value
+  return Promise.resolve(node.attrs).then(attrs => {
+    for (let attr of attrs) {
+      if (attr.name == 'href') {
+        return attr.value;
       }
     }
-  })
-}
+  });
+};
 
 exports.getSrc = node => {
-  return Promise.resolve(node.attrs)
-  .then(attrs => {
-    for (let attr of attrs){
-      if (attr.name == 'src'){
-        return attr.value
+  return Promise.resolve(node.attrs).then(attrs => {
+    for (let attr of attrs) {
+      if (attr.name == 'src') {
+        return attr.value;
       }
     }
-  })
-}
+  });
+};
 
 /*
 exports.hasAttr = ({ attrs }, attrName, value) => {

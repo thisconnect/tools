@@ -1,1 +1,1 @@
-module.exports = require('fildes-extra')
+module.exports = require('fildes-extra');

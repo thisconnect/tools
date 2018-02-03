@@ -1,63 +1,65 @@
-const { dirname, resolve } = require('path')
-const { readFile } = require('fildes')
-const postcss = require('postcss')
-const importCSS = require('postcss-import')
-const copyCSS = require('postcss-copy')
-const pxtorem = require('postcss-pxtorem')
-const cssnext = require('postcss-cssnext')
-const reporter = require('postcss-reporter')
-const lint = require('./lint.js')
-const { log } = require('../log/index.js')
+const { dirname, resolve } = require('path');
+const { readFile } = require('fildes');
+const postcss = require('postcss');
+const importCSS = require('postcss-import');
+const copyCSS = require('postcss-copy');
+const pxtorem = require('postcss-pxtorem');
+const cssnext = require('postcss-cssnext');
+const reporter = require('postcss-reporter');
+const lint = require('./lint.js');
+const { log } = require('../log/index.js');
 
 module.exports = ({
-  src, dest,
+  src,
+  dest,
   // assets = './',
   fonts = './',
   fontsExt = /eot|ttf|woff|woff2/i,
-  fontSrcs = [{
-    fullName: 'fontawesome-webfont.svg',
-    path: 'font-awesome/fonts'
-  }],
+  fontSrcs = [
+    {
+      fullName: 'fontawesome-webfont.svg',
+      path: 'font-awesome/fonts'
+    }
+  ],
   map = {
     inline: false
   }
 }) => {
-
   const fromFontSrc = fontSrcs.map(c => {
-    return Object.assign({ keys: Object.keys(c) }, c)
-  })
+    return Object.assign({ keys: Object.keys(c) }, c);
+  });
 
   const isFontSrc = meta => {
     return fromFontSrc.some(c => {
       return c.keys.every(key => {
-        return c[key] == meta[key]
-      })
-    })
-  }
+        return c[key] == meta[key];
+      });
+    });
+  };
 
-  return readFile(src)
-  .then(css => {
+  return readFile(src).then(css => {
     return postcss([
       lint,
       importCSS({
         plugins: [lint],
         onImport: files => {
-          log('IMPORTS', files)
+          log('IMPORTS', files);
         }
       }),
-      copyCSS({ // fonts
+      copyCSS({
+        // fonts
         src: ['node_modules', dirname(src)],
         dest: resolve(dirname(dest), fonts),
         template: '[name].[hash].[ext]',
         ignore: meta => {
-          if (isFontSrc(meta)){
-            return false
+          if (isFontSrc(meta)) {
+            return false;
           }
-          return !fontsExt.test(meta.ext)
+          return !fontsExt.test(meta.ext);
         },
         relativePath: (dir, meta, result) => {
-          return dirname(result.opts.to)
-        }/*,
+          return dirname(result.opts.to);
+        } /*,
         transform: meta => {
           console.log(`transform ${meta.sourceValue}`)
           return Promise.resolve(meta)
@@ -85,11 +87,10 @@ module.exports = ({
         }
       }),
       reporter()
-    ])
-    .process(css, {
+    ]).process(css, {
       from: src,
       to: dest,
       map
-    })
-  })
-}
+    });
+  });
+};

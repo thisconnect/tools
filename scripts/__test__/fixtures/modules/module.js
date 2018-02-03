@@ -1,5 +1,5 @@
-const hi = 'hi'
+const hi = 'hi';
 
-export function foo(bar){
-  return `${hi} ${bar}`
+export function foo(bar) {
+  return `${hi} ${bar}`;
 }

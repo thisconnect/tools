@@ -1,11 +1,11 @@
-import tape from 'tape'
+import tape from 'tape';
 
 tape('test', t => {
-  console.log('test ?')
-  console.log(Object.keys(tape))
-  t.ok(true, 'true is ok')
-  t.end()
-})
+  console.log('test ?');
+  console.log(Object.keys(tape));
+  t.ok(true, 'true is ok');
+  t.end();
+});
 
 /*
 tap.test('test ', t => {

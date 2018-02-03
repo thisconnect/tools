@@ -1,5 +1,5 @@
-const bundle = require('../bundle.js')
-const { resolve } = require('path')
+const bundle = require('../bundle.js');
+const { resolve } = require('path');
 
 module.exports = ({ dest }) => {
   return bundle({
@@ -8,5 +8,5 @@ module.exports = ({ dest }) => {
     libs: true,
     format: 'iife',
     context: 'window'
-  })
-}
+  });
+};

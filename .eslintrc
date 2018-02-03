@@ -13,7 +13,7 @@
     "linebreak-style": ["warn", "unix"],
     "no-console": "off",
     "quotes": ["warn", "single", { "allowTemplateLiterals": true }],
-    "semi": ["warn", "never"]
+    "semi": ["warn", "always"]
   },
   "env": {
     "browser": true,

@@ -1,6 +1,6 @@
-import { foo } from './modules/module.js'
+import { foo } from './modules/module.js';
 
-const bar = 'lala'
-const test = foo(bar)
+const bar = 'lala';
+const test = foo(bar);
 
-console.log(test)
+console.log(test);

@@ -1,7 +1,7 @@
-const rollup = require('rollup').rollup
-const { getPlugins } = require('./plugins.js')
+const rollup = require('rollup').rollup;
+const { getPlugins } = require('./plugins.js');
 
-const env = process.env.NODE_ENV || 'production'
+const env = process.env.NODE_ENV || 'production';
 
 module.exports = ({
   src,
@@ -16,19 +16,18 @@ module.exports = ({
     'process.env.NODE_ENV': JSON.stringify(env)
   }
 }) => {
-  const sourcemap = sourceMap != null ? sourceMap : true
+  const sourcemap = sourceMap != null ? sourceMap : true;
   return rollup({
     context,
     input: src,
     // external: ['date-fns/format', 'marked', 'react', 'react-dom'],
     plugins: getPlugins({ libs, minify, replace })
-  })
-  .then(bundle => {
+  }).then(bundle => {
     if (!write) {
       return bundle.generate({
         format,
         sourcemap: sourcemap ? 'inline' : false
-      })
+      });
     }
     return bundle.write({
       banner: '// App',
@@ -42,6 +41,6 @@ module.exports = ({
       // },
       indent: false,
       sourcemap
-    })
-  })
-}
+    });
+  });
+};

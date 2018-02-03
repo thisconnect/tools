@@ -1,1 +1,1 @@
-console.log('body.js')
+console.log('body.js');

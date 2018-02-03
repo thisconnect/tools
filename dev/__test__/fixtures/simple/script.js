@@ -1,3 +1,3 @@
-import foo from './scripts/module.js'
+import foo from './scripts/module.js';
 
-console.log('script!!', foo)
+console.log('script!!', foo);

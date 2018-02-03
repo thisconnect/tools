@@ -1,4 +1,4 @@
 /* eslint no-unused-vars: 0 */
-import * as fetch from 'whatwg-fetch';
+import * as _import from 'import.js';
 
 export default () => {};

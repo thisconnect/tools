@@ -1,30 +1,34 @@
-const test = require('tape')
-const { parse } = require('parse5')
-const { getNodeById, getNodesByTagName } = require('../ast/match.js')
+const test = require('tape');
+const { parse } = require('parse5');
+const { getNodeById, getNodesByTagName } = require('../ast/match.js');
 
 test('getNodesByTagName', t => {
-  const doc = parse('<!doctype html><div><p><span></span><span></span></p></div>')
+  const doc = parse(
+    '<!doctype html><div><p><span></span><span></span></p></div>'
+  );
   getNodesByTagName(doc, 'span')
-  .then(nodes => {
-    t.ok(Array.isArray(nodes), 'returns an array')
-    t.equal(nodes.length, 2, 'has 2 nodes')
-    t.equal(nodes[0].tagName, 'span', 'element is a span')
-    t.end()
-  })
-  .catch(t.end)
-})
+    .then(nodes => {
+      t.ok(Array.isArray(nodes), 'returns an array');
+      t.equal(nodes.length, 2, 'has 2 nodes');
+      t.equal(nodes[0].tagName, 'span', 'element is a span');
+      t.end();
+    })
+    .catch(t.end);
+});
 
 test('getNodeById', t => {
-  const doc = parse('<!doctype html><div><p><span id=foo></span><span></span></p></div>')
+  const doc = parse(
+    '<!doctype html><div><p><span id=foo></span><span></span></p></div>'
+  );
   getNodeById(doc, 'foo')
-  .then(node => {
-    t.equal(typeof node, 'object', 'is object')
-    t.equal(node.tagName, 'span', 'element is a span')
-    t.equal(node.attrs[0].value, 'foo', 'first attribute has value foo')
-    t.end()
-  })
-  .catch(t.end)
-})
+    .then(node => {
+      t.equal(typeof node, 'object', 'is object');
+      t.equal(node.tagName, 'span', 'element is a span');
+      t.equal(node.attrs[0].value, 'foo', 'first attribute has value foo');
+      t.end();
+    })
+    .catch(t.end);
+});
 
 /*
 test('match by tagName', t => {

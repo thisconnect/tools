@@ -1,24 +1,24 @@
-const { minify } = require('uglify-js')
+const { minify } = require('uglify-js');
 
-module.exports = (code) => {
+module.exports = code => {
   return Promise.resolve(code)
-  .then(data => Buffer.isBuffer(data) ? data.toString() : data)
-  .then(code => {
-    return minify(code, {
-      mangle: true,
-      output: {
-        // https://github.com/mishoo/UglifyJS2#beautifier-options
-        quote_style: 1,
-        beautify: false,
-        // indent_level: 2,
-        comments: false
-        // source_map: null
-      },
-      ie8: true
+    .then(data => (Buffer.isBuffer(data) ? data.toString() : data))
+    .then(code => {
+      return minify(code, {
+        mangle: true,
+        output: {
+          // https://github.com/mishoo/UglifyJS2#beautifier-options
+          quote_style: 1,
+          beautify: false,
+          // indent_level: 2,
+          comments: false
+          // source_map: null
+        },
+        ie8: true
+      });
     })
-  })
-  .then(result => result.code)
-}
+    .then(result => result.code);
+};
 
 /*
 const { rollup } = require('rollup')
@@ -46,8 +46,6 @@ module.exports = ({ input }) => {
 
 }
 */
-
-
 
 /*
 

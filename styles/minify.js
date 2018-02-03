@@ -1,4 +1,4 @@
-const cssnano = require('cssnano')
+const cssnano = require('cssnano');
 
 module.exports = ({ result, src, dest }) => {
   return cssnano.process(result.css, {
@@ -10,5 +10,5 @@ module.exports = ({ result, src, dest }) => {
     to: dest,
     save: true,
     autoprefixer: false
-  })
-}
+  });
+};

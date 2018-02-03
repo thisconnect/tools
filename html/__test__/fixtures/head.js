@@ -1,5 +1,5 @@
-console.log('head.js')
+console.log('head.js');
 
-if (!window.Promise || !window.fetch){
-  console.log('load polyfill')
+if (!window.Promise || !window.fetch) {
+  console.log('load polyfill');
 }

@@ -1,5 +1,5 @@
-const stylelint = require('stylelint')
-const { resolve } = require('path')
+const stylelint = require('stylelint');
+const { resolve } = require('path');
 // const stylestandard = require('stylelint-config-standard')
 
 module.exports = stylelint({
@@ -14,11 +14,14 @@ module.exports = stylelint({
     'comment-empty-line-before': null,
     'declaration-empty-line-before': null,
     'max-empty-lines': 3,
-    'no-eol-whitespace': [true, {
-      ignore: ['empty-lines']
-    }],
+    'no-eol-whitespace': [
+      true,
+      {
+        ignore: ['empty-lines']
+      }
+    ],
     'number-leading-zero': null,
     'shorthand-property-no-redundant-values': null
   },
   ignoreFiles: ['node_modules/**']
-})
+});

@@ -1,10 +1,9 @@
-const test = require('tape')
+const test = require('tape');
 // const runner = require('../runner.js')
 
-const { TRAVIS, TRAVIS_OS_NAME } = process.env
+const { TRAVIS, TRAVIS_OS_NAME } = process.env;
 
 test.skip('test karma runner', t => {
-
   // if (TRAVIS && TRAVIS_OS_NAME == 'osx'){
   //   t.comment('karma currently doesnt work on osx-travis')
   //   return t.end()
@@ -22,4 +21,4 @@ test.skip('test karma runner', t => {
   // .then(exitCode => t.equal(exitCode, 0, 'exitCode is 0'))
   // .then(() => t.end())
   // .catch(t.end)
-})
+});

@@ -1,9 +1,9 @@
-const imagemin = require('imagemin')
-const imageminWebp = require('imagemin-webp')
-const imageminJpegtran = require('imagemin-jpegtran')
-const imageminPngquant = require('imagemin-pngquant')
-const imageminGifsicle = require('imagemin-gifsicle')
-const imageminSVGO = require('imagemin-svgo')
+const imagemin = require('imagemin');
+const imageminWebp = require('imagemin-webp');
+const imageminJpegtran = require('imagemin-jpegtran');
+const imageminPngquant = require('imagemin-pngquant');
+const imageminGifsicle = require('imagemin-gifsicle');
+const imageminSVGO = require('imagemin-svgo');
 
 module.exports = buffer => {
   return imagemin.buffer(buffer, {
@@ -21,15 +21,15 @@ module.exports = buffer => {
         // colors:
       })
     ]
-  })
-}
+  });
+};
 
 module.exports.optimizeSVG = (buffer, { plugins = [] }) => {
-  const svg = imageminSVGO({ plugins })
+  const svg = imageminSVGO({ plugins });
   return imagemin.buffer(buffer, {
     plugins: [svg]
-  })
-}
+  });
+};
 
 module.exports.toWebp = buffer => {
   const webp = imageminWebp({
@@ -40,8 +40,8 @@ module.exports.toWebp = buffer => {
     filter: 0,
     sharpness: 0,
     lossless: false
-  })
+  });
   return imagemin.buffer(buffer, {
     plugins: [webp]
-  })
-}
+  });
+};
