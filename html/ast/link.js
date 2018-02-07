@@ -23,7 +23,7 @@ const append = (node, path, { src, dest }) => {
         return css;
       });
     })
-    .then(data => data.toString().replace(/\/\*#\ssourceMappingURL\=.*$/, ''))
+    .then(data => data.toString().replace(/\/\*#\ssourceMappingURL=.*$/, ''))
     .then(css => appendFragment(node, css))
     .then(() => file);
 };
