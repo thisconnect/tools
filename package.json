@@ -74,7 +74,7 @@
     "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {
-    "animate.css": "^3.5.2",
+    "animate.css": "^3.6.1",
     "font-awesome": "^4.7.0",
     "node-fetch": "^2.0.0",
     "normalize.css": "^7.0.0"
