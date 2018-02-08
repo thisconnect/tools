@@ -27,7 +27,7 @@
     "css-what": "^2.1.0",
     "cssnano": "^3.10.0",
     "es6-promise": "^4.2.4",
-    "eslint": "^4.16.0",
+    "eslint": "^4.17.0",
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-react": "^7.6.1",
     "faucet": "0.0.1",
