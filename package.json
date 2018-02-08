@@ -44,7 +44,7 @@
     "import.js": "^0.1.1",
     "jimp": "^0.2.28",
     "parse5": "^4.0.0",
-    "postcss": "6.0.16",
+    "postcss": "6.0.17",
     "postcss-copy": "7.1.0",
     "postcss-cssnext": "^3.1.0",
     "postcss-import": "^11.0.0",
