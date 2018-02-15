@@ -14,6 +14,7 @@ module.exports = stylelint({
     'comment-empty-line-before': null,
     'declaration-empty-line-before': null,
     'max-empty-lines': 3,
+    'no-descending-specificity': null,
     'no-eol-whitespace': [
       true,
       {
