@@ -1,8 +1,6 @@
 const rollup = require('rollup').rollup;
 const { getPlugins } = require('./plugins.js');
 
-const env = process.env.NODE_ENV || 'production';
-
 module.exports = ({
   src,
   dest,
@@ -13,7 +11,7 @@ module.exports = ({
   sourceMap = true,
   context,
   replace = {
-    'process.env.NODE_ENV': JSON.stringify(env)
+    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'production')
   }
 }) => {
   const sourcemap = sourceMap != null ? sourceMap : true;
