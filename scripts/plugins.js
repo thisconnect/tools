@@ -26,7 +26,7 @@ exports.getPlugins = ({ libs, minify, replace }) => {
       commonjs({
         // include: ['node_modules/**'],
         namedExports: {
-          'node_modules/react/react.js': ['Component', 'createElement']
+          'node_modules/react/index.js': ['Component', 'PureComponent', 'Children', 'createElement']
         }
       })
     );
