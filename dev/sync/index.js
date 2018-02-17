@@ -113,9 +113,10 @@ module.exports = ({ dir, open = 'ui', watch = true } = {}) => {
     if (pathname.match(/\.map$/i)) {
       // console.log(pathname)
     }
+    if (pathname.match(/\.json/i)) {
+      console.log(pathname)
+    }
     if (pathname.match(/\.js$/i)) {
-      console.log(1, pathname);
-
       return bundleJS({
         src: resolve(dir + pathname),
         dest: resolve(dir + pathname.replace(/\.js$/, '.min.js')),
