@@ -64,7 +64,7 @@
     "rollup-plugin-replace": "^2.0.0",
     "rollup-plugin-uglify": "^3.0.0",
     "st": "^1.2.2",
-    "stylelint": "^8.3.1",
+    "stylelint": "^9.0.0",
     "stylelint-config-standard": "^18.1.0",
     "svgo": "^1.0.4",
     "tape": "^4.8.0",
