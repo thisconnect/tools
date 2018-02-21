@@ -29,7 +29,7 @@
     "es6-promise": "^4.2.4",
     "eslint": "^4.18.1",
     "eslint-plugin-promise": "^3.6.0",
-    "eslint-plugin-react": "^7.6.1",
+    "eslint-plugin-react": "^7.7.0",
     "faucet": "0.0.1",
     "fildes": "^2.1.0",
     "fildes-extra": "^0.6.0",
