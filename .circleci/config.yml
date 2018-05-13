@@ -31,9 +31,25 @@ jobs:
           name: Run tests
           command: npm test
 
+  "node-10":
+    docker:
+      - image: circleci/node:10-browsers
+        environment:
+          CHROME_BIN: "/usr/bin/google-chrome"
+    working_directory: ~/tool-10
+    steps:
+      - checkout
+      - run: node --version
+      - run: npm --version
+      - run: npm install
+      - run:
+          name: Run tests
+          command: npm test
+
 workflows:
   version: 2
   build:
     jobs:
       - "node-6"
       - "node-8"
+      - "node-10"
