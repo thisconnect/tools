@@ -42,7 +42,7 @@
     "imagemin-svgo": "^6.0.0",
     "imagemin-webp": "^4.1.0",
     "jimp": "^0.2.28",
-    "parse5": "^4.0.0",
+    "parse5": "^5.0.0",
     "postcss": "6.0.22",
     "postcss-copy": "7.1.0",
     "postcss-cssnext": "^3.1.0",
