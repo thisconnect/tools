@@ -1,5 +1,5 @@
-const { parse, serialize, treeAdapters } = require('parse5');
-const adapter = treeAdapters.default;
+const { parse, serialize } = require('parse5');
+const adapter = require('parse5-htmlparser2-tree-adapter');
 
 exports.getAst = data => {
   return Promise.resolve(data)
