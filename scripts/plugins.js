@@ -3,7 +3,7 @@ const npm = require('rollup-plugin-node-resolve');
 const commonjs = require('rollup-plugin-commonjs');
 // const json = require('rollup-plugin-json')
 const babel = require('rollup-plugin-babel');
-const uglify = require('rollup-plugin-uglify');
+const { uglify } = require('rollup-plugin-uglify');
 const filesize = require('rollup-plugin-filesize');
 // const builtins = require('rollup-plugin-node-builtins')
 
