@@ -68,7 +68,7 @@
     "svgo": "^1.0.4",
     "tape": "^4.8.0",
     "to-ico": "^1.1.5",
-    "uglify-js": "^3.3.11",
+    "uglify-js": "^3.4.0",
     "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {
