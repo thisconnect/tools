@@ -4,7 +4,7 @@ const postcss = require('postcss');
 const importCSS = require('postcss-import');
 const copyCSS = require('postcss-copy');
 const pxtorem = require('postcss-pxtorem');
-const cssnext = require('postcss-cssnext');
+const presetEnv = require('postcss-preset-env');
 const reporter = require('postcss-reporter');
 const lint = require('./lint.js');
 const { log } = require('../log/index.js');
@@ -71,20 +71,15 @@ module.exports = ({
         replace: true,
         mediaQuery: true
       }),
-      cssnext({
+      presetEnv({
+        stage: 0,
         browsers: [
           'android >= 4',
           'ios >= 8',
           'chrome >= 45', // 9
           'firefox >= 3.6',
-          'ie >= 8'
-        ],
-        features: {
-          rem: {
-            rootValue: 16,
-            unitPrecision: 4
-          }
-        }
+          'ie >= 11'
+        ]
       }),
       reporter()
     ]).process(css, {
