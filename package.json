@@ -1,6 +1,6 @@
 {
   "name": "tool",
-  "version": "16.0.0",
+  "version": "17.0.0",
   "description": "Build tools",
   "main": "index.js",
   "scripts": {
