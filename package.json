@@ -29,7 +29,7 @@
     "cssnano": "^4.0.1",
     "es6-promise": "^4.2.4",
     "eslint": "^5.0.0",
-    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-promise": "^4.0.0",
     "eslint-plugin-react": "^7.10.0",
     "faucet": "0.0.1",
     "fildes": "^2.1.0",
