@@ -48,7 +48,7 @@
     "prettier": "^1.13.7",
     "pretty-bytes": "^5.0.0",
     "rollup": "^0.64.1",
-    "rollup-plugin-babel": "^3.0.7",
+    "rollup-plugin-babel": "^4.0.2",
     "rollup-plugin-buble": "^0.19.2",
     "rollup-plugin-commonjs": "^9.0.0",
     "rollup-plugin-filesize": "^4.0.1",
