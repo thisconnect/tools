@@ -36,7 +36,7 @@
     "fildes-extra": "^0.6.0",
     "glob": "^7.1.2",
     "gzip-size": "^5.0.0",
-    "jimp": "^0.4.0",
+    "jimp": "^0.5.0",
     "parse5": "^5.0.0",
     "parse5-htmlparser2-tree-adapter": "^5.0.0",
     "postcss": "7.0.2",
