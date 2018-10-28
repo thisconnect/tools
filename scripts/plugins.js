@@ -3,13 +3,11 @@ const npm = require('rollup-plugin-node-resolve');
 const commonjs = require('rollup-plugin-commonjs');
 // const json = require('rollup-plugin-json')
 const babel = require('rollup-plugin-babel');
-const { uglify } = require('rollup-plugin-uglify');
+const { terser } = require('rollup-plugin-terser');
 const filesize = require('rollup-plugin-filesize');
 // const builtins = require('rollup-plugin-node-builtins')
 
 const presetReact = require('babel-preset-react');
-const presetStage3 = require('babel-preset-stage-3');
-const presetES2015Rollup = require('babel-preset-es2015-rollup');
 
 exports.getPlugins = ({ libs, minify, replace }) => {
   const plugins = [];
@@ -42,7 +40,7 @@ exports.getPlugins = ({ libs, minify, replace }) => {
     babel({
       babelrc: false,
       // exclude: 'node_modules/**',
-      presets: [presetReact, presetStage3, presetES2015Rollup]
+      presets: [presetReact]
       // externalHelpers: true,
       // runtimeHelpers: true
     })
@@ -50,11 +48,8 @@ exports.getPlugins = ({ libs, minify, replace }) => {
 
   if (minify) {
     plugins.push(
-      uglify({
-        compress: {
-          ie8: true,
-          warnings: false
-        }
+      terser({
+        ecma: 5
       })
     );
   }
