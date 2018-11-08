@@ -14,5 +14,6 @@ steps:
 
 - script: |
     npm install
+    npm list
     npm test
   displayName: 'npm install and test'
