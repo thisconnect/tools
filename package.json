@@ -17,6 +17,8 @@
     "url": "https://github.com/thisconnect/tools/issues"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.2.5",
+    "@babel/preset-env": "^7.2.3",
     "babel-preset-react": "^6.24.1",
     "boxen": "^2.0.0",
     "browser-sync": "^2.24.5",

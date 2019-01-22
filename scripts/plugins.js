@@ -19,9 +19,13 @@ exports.getPlugins = ({ libs, minify, replace }) => {
   if (libs) {
     plugins.push(
       npm({
-        jsnext: true
+        browser: true,
+        // jsnext: true,
+        modules: true,
+        preferBuiltins: false
       }),
       commonjs({
+        ignoreGlobal: true,
         // include: ['node_modules/**'],
         namedExports: {
           'node_modules/react/index.js': [
@@ -39,10 +43,18 @@ exports.getPlugins = ({ libs, minify, replace }) => {
   plugins.push(
     babel({
       babelrc: false,
+      ignore: ['node_modules'],
       // exclude: 'node_modules/**',
-      presets: [presetReact]
+      // presets: [presetReact],
       // externalHelpers: true,
       // runtimeHelpers: true
+      presets: [
+        ['@babel/preset-env', {
+          useBuiltIns: 'usage', // 'entry'
+          targets: { ie: 11 },
+          debug: false
+        }]
+      ]
     })
   );
 

@@ -38,7 +38,8 @@ module.exports = ({
       //   'react-dom': 'ReactDOM'
       // },
       indent: false,
-      sourcemap
+      sourcemap,
+      strict: true
     });
   });
 };
