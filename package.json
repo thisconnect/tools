@@ -29,7 +29,7 @@
     "eslint-plugin-promise": "^4.0.0",
     "eslint-plugin-react": "^7.12.4",
     "fildes": "^2.1.0",
-    "fildes-extra": "^0.6.0",
+    "fildes-extra": "^1.0.0",
     "glob": "^7.1.2",
     "gzip-size": "^5.0.0",
     "parse5": "^5.0.0",
