@@ -1,5 +1,5 @@
 const pluginReplace = require('rollup-plugin-replace');
-const npm = require('rollup-plugin-node-resolve');
+const resolve = require('rollup-plugin-node-resolve');
 const commonjs = require('rollup-plugin-commonjs');
 // const json = require('rollup-plugin-json')
 const babel = require('rollup-plugin-babel');
@@ -7,7 +7,7 @@ const { terser } = require('rollup-plugin-terser');
 const filesize = require('rollup-plugin-filesize');
 // const builtins = require('rollup-plugin-node-builtins')
 
-const presetReact = require('babel-preset-react');
+// const presetReact = require('babel-preset-react');
 
 exports.getPlugins = ({ libs, minify, replace }) => {
   const plugins = [];
@@ -18,10 +18,8 @@ exports.getPlugins = ({ libs, minify, replace }) => {
 
   if (libs) {
     plugins.push(
-      npm({
-        browser: true,
-        // jsnext: true,
-        modules: true,
+      resolve({
+        mainFields: ['browser', 'module', 'main'],
         preferBuiltins: false
       }),
       commonjs({
