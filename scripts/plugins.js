@@ -1,13 +1,15 @@
 const pluginReplace = require('rollup-plugin-replace');
-const resolve = require('rollup-plugin-node-resolve');
+const npm = require('rollup-plugin-node-resolve');
 const commonjs = require('rollup-plugin-commonjs');
 // const json = require('rollup-plugin-json')
 const babel = require('rollup-plugin-babel');
-const { terser } = require('rollup-plugin-terser');
+const { uglify } = require('rollup-plugin-uglify');
 const filesize = require('rollup-plugin-filesize');
 // const builtins = require('rollup-plugin-node-builtins')
 
-// const presetReact = require('babel-preset-react');
+const presetReact = require('babel-preset-react');
+const presetStage3 = require('babel-preset-stage-3');
+const presetES2015Rollup = require('babel-preset-es2015-rollup');
 
 exports.getPlugins = ({ libs, minify, replace }) => {
   const plugins = [];
@@ -18,12 +20,10 @@ exports.getPlugins = ({ libs, minify, replace }) => {
 
   if (libs) {
     plugins.push(
-      resolve({
-        mainFields: ['browser', 'module', 'main'],
-        preferBuiltins: false
+      npm({
+        jsnext: true
       }),
       commonjs({
-        ignoreGlobal: true,
         // include: ['node_modules/**'],
         namedExports: {
           'node_modules/react/index.js': [
@@ -41,25 +41,19 @@ exports.getPlugins = ({ libs, minify, replace }) => {
   plugins.push(
     babel({
       babelrc: false,
-      ignore: ['node_modules'],
       // exclude: 'node_modules/**',
-      // presets: [presetReact],
+      presets: [presetReact, presetStage3, presetES2015Rollup]
       // externalHelpers: true,
       // runtimeHelpers: true
-      presets: [
-        ['@babel/preset-env', {
-          useBuiltIns: 'usage', // 'entry'
-          targets: { ie: 11 },
-          debug: false
-        }]
-      ]
     })
   );
 
   if (minify) {
     plugins.push(
-      terser({
-        ecma: 5
+      uglify({
+        compress: {
+          ie8: true
+        }
       })
     );
   }

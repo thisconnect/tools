@@ -38,8 +38,7 @@ module.exports = ({
       //   'react-dom': 'ReactDOM'
       // },
       indent: false,
-      sourcemap,
-      strict: true
+      sourcemap
     });
   });
 };
