@@ -1,3 +1,5 @@
+// const parse = require('css-what')
+
 exports.getNodesByTagName = (nodes, tagName) => {
   return new Promise(resolve => {
     const results = [];
@@ -39,3 +41,47 @@ function getChildNodes(nodes) {
   const childNodes = nodes.childNodes;
   return childNodes && childNodes.length ? [...childNodes] : [...nodes];
 }
+
+/*
+function match(node, t){
+  const tokens = t.reverse()
+  console.log('---tokens--', tokens)
+
+  for (const token of tokens){
+    if (token.type === 'tag'){
+      if (node.nodeName !== token.name){
+        return false
+      }
+    } else if (token.type === 'descendant'){
+
+    }
+  }
+  return true
+}
+
+*/
+
+/*
+// querySelectorAll
+exports.querySelectorAll = (nodes, selector) => {
+  return new Promise((resolve, reject) => {
+    const selectors = parse(selector)
+
+    const results = []
+    const que = (nodes.childNodes && nodes.childNodes.length) ? [...nodes.childNodes] : [...nodes]
+    for (const node of que){
+      for (const tokens of selectors){
+        if (match(node, tokens)){
+          results.push(node)
+        }
+      }
+
+      if (node.childNodes.length){
+        que.push(...node.childNodes)
+      }
+    }
+    resolve(results)
+
+  })
+}
+*/
