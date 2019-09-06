@@ -8,6 +8,7 @@ const filesize = require('rollup-plugin-filesize');
 // const builtins = require('rollup-plugin-node-builtins')
 
 // const presetReact = require('babel-preset-react');
+const presetEnv = require('@babel/preset-env');
 
 exports.getPlugins = ({ libs, minify, replace }) => {
   const plugins = [];
@@ -47,7 +48,7 @@ exports.getPlugins = ({ libs, minify, replace }) => {
       // externalHelpers: true,
       // runtimeHelpers: true
       presets: [
-        ['@babel/preset-env', {
+        [presetEnv, {
           useBuiltIns: 'usage', // 'entry'
           targets: { ie: 11 },
           debug: false
