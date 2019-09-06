@@ -19,7 +19,7 @@
   "dependencies": {
     "@babel/polyfill": "^7.2.5",
     "@babel/preset-env": "^7.3.4",
-    "babel-preset-react": "^6.24.1",
+    "@babel/preset-react": "^7.0.0",
     "boxen": "^4.0.0",
     "browser-sync": "^2.24.5",
     "chalk": "^2.3.1",
@@ -28,7 +28,7 @@
     "eslint": "^6.0.1",
     "eslint-plugin-promise": "^4.0.0",
     "eslint-plugin-react": "^7.12.4",
-    "fildes": "^2.1.0",
+    "fildes": "3.0.0",
     "fildes-extra": "^1.0.0",
     "glob": "^7.1.2",
     "gzip-size": "^5.0.0",
