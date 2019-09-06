@@ -19,7 +19,6 @@
   "dependencies": {
     "@babel/polyfill": "^7.2.5",
     "@babel/preset-env": "^7.3.4",
-    "babel-preset-react": "^6.24.1",
     "boxen": "^4.0.0",
     "browser-sync": "^2.24.5",
     "chalk": "^2.3.1",
