@@ -1,9 +1,9 @@
 const browserSync = require('browser-sync');
 const { parse } = require('url');
 const { resolve } = require('path');
-const bundleCSS = require('../../styles/bundle.js');
-const bundleJS = require('../../scripts/bundle.js');
 const { stats } = require('fildes');
+const bundleCSS = require('../styles/bundle.js');
+const bundleJS = require('../scripts/bundle.js');
 
 module.exports = ({ dir, open = 'ui', watch = true } = {}) => {
   const files = ['*.html', '*.css', 'styles/*.css', '*.js', 'scripts/*.js'].map(
