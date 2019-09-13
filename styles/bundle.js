@@ -50,7 +50,7 @@ module.exports = ({
         // fonts
         src: ['node_modules', dirname(src)],
         dest: resolve(dirname(dest), fonts),
-        template: '[name].[hash].[ext]',
+        template: '[name].[hash].[ext][query]',
         ignore: meta => {
           if (isFontSrc(meta)) {
             return false;
