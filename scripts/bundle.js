@@ -6,20 +6,23 @@ module.exports = ({
   dest,
   format = 'iife',
   write = true,
-  libs = false,
+  libs = false, // TODO: change default to true
   minify = true,
   sourceMap = true,
   context,
+  globals,
+  external = [],
   replace = {
     'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'production')
-  }
+  },
+  namedExports
 }) => {
   const sourcemap = sourceMap != null ? sourceMap : true;
   return rollup({
     context,
     input: src,
-    // external: ['date-fns/format', 'marked', 'react', 'react-dom'],
-    plugins: getPlugins({ libs, minify, replace })
+    external: [].concat(external, globals && Object.keys(globals)),
+    plugins: getPlugins({ libs, minify, replace, namedExports })
   }).then(bundle => {
     if (!write) {
       return bundle.generate({
@@ -31,12 +34,7 @@ module.exports = ({
       banner: '// App',
       file: dest,
       format,
-      // globals: {
-      //   'date-fns/format': 'format',
-      //   'marked': 'marked',
-      //   'react': 'React',
-      //   'react-dom': 'ReactDOM'
-      // },
+      globals,
       indent: false,
       sourcemap,
       strict: true
