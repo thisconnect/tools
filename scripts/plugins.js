@@ -1,3 +1,4 @@
+const path = require('path')
 const pluginReplace = require('rollup-plugin-replace');
 const resolve = require('rollup-plugin-node-resolve');
 const commonjs = require('rollup-plugin-commonjs');
@@ -6,11 +7,12 @@ const babel = require('rollup-plugin-babel');
 const { terser } = require('rollup-plugin-terser');
 const filesize = require('rollup-plugin-filesize');
 // const builtins = require('rollup-plugin-node-builtins')
+const importCoreJS = require('./core-js')
 
-// const presetReact = require('babel-preset-react');
+const presetReact = require('@babel/preset-react');
 const presetEnv = require('@babel/preset-env');
 
-exports.getPlugins = ({ libs, minify, replace }) => {
+exports.getPlugins = ({ libs, minify, replace, namedExports }) => {
   const plugins = [];
 
   if (replace) {
@@ -19,22 +21,29 @@ exports.getPlugins = ({ libs, minify, replace }) => {
 
   if (libs) {
     plugins.push(
+      importCoreJS(),
       resolve({
-        mainFields: ['browser', 'module', 'main'],
+        mainFields: ['module', 'main', 'browser'],
         preferBuiltins: false
       }),
+      pluginReplace(replace),
       commonjs({
         ignoreGlobal: true,
+        namedExports
+        // include: [
+        //   process.cwd(),
+        //   path.resolve(__dirname, '../node_modules')
+        // ],
         // include: ['node_modules/**'],
-        namedExports: {
-          'node_modules/react/index.js': [
-            'Component',
-            'PureComponent',
-            'Children',
-            'createElement',
-            'Fragment'
-          ]
-        }
+        // namedExports: {
+        //   'node_modules/react/index.js': [
+        //     'Component',
+        //     'PureComponent',
+        //     'Children',
+        //     'createElement',
+        //     'Fragment'
+        //   ]
+        // }
       })
     );
   }
@@ -42,14 +51,15 @@ exports.getPlugins = ({ libs, minify, replace }) => {
   plugins.push(
     babel({
       babelrc: false,
-      ignore: ['node_modules'],
+      // ignore: ['node_modules'],
       // exclude: 'node_modules/**',
-      // presets: [presetReact],
       // externalHelpers: true,
       // runtimeHelpers: true
       presets: [
+        [presetReact],
         [presetEnv, {
-          useBuiltIns: 'usage', // 'entry'
+          useBuiltIns: 'entry', // 'usage'
+          corejs: 3,
           targets: { ie: 11 },
           debug: false
         }]

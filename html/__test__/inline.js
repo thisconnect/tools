@@ -16,7 +16,7 @@ test('inline HTML', t => {
   inlineHTML({ src, dest })
     .then(() => readFile(dest, { encoding: 'utf8' }))
     .then(result => {
-      t.ok(result.indexOf('src=') == -1, 'has no more src attributes');
+      t.ok(result.indexOf('<script src=') == -1, 'has inlined script');
       t.ok(result.indexOf('<svg') > -1, 'has svg element');
       t.ok(
         result.indexOf('rel=stylesheet') == -1,

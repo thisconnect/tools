@@ -122,7 +122,11 @@ module.exports = ({ dir, open = 'ui', watch = true } = {}) => {
         dest: resolve(dir + pathname.replace(/\.js$/, '.min.js')),
         write: false
       })
-        .then(({ code, map }) => {
+        .then(({ output }) => {
+          if (!output || output.length !== 1) {
+            console.warn(output)
+          }
+          const { code, map } = output[0]
           res.setHeader('Content-Type', 'application/javascript');
           res.end(code + '\n//# sourceMappingURL=' + map.toUrl());
         })
