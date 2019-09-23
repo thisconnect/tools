@@ -1,12 +1,12 @@
 version: 2.0
 
 jobs:
-  "node-8":
+  "node-12":
     docker:
-      - image: circleci/node:8-browsers
+      - image: circleci/node:12-browsers
         environment:
           CHROME_BIN: "/usr/bin/google-chrome"
-    working_directory: ~/tool-8
+    working_directory: ~/tool-12
     steps:
       - checkout
       - run: node --version
@@ -35,5 +35,5 @@ workflows:
   version: 2
   build:
     jobs:
-      - "node-8"
+      - "node-12"
       - "node-10"
