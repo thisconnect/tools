@@ -10,5 +10,9 @@ module.exports = ({ result, src, dest }) => {
     to: dest,
     save: true,
     autoprefixer: false
+  }, {
+    preset: ['default', {
+      discardComments: { removeAll: true }
+    }]
   });
 };
