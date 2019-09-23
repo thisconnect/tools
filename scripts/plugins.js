@@ -56,9 +56,10 @@ exports.getPlugins = ({ libs, minify, replace, namedExports }) => {
       // externalHelpers: true,
       // runtimeHelpers: true
       presets: [
-        [presetReact],
+        // [presetReact],
         [presetEnv, {
           useBuiltIns: 'entry', // 'usage'
+          modules: false,
           corejs: 3,
           targets: { ie: 11 },
           debug: false

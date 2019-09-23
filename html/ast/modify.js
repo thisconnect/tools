@@ -28,16 +28,6 @@ exports.replaceFragment = (node, data) => {
     });
 };
 
-exports.linkToStyle = node => {
-  return Promise.resolve(node).then(node => {
-    node.nodeName = node.tagName = 'style';
-    node.attrs = node.attrs.filter(attr => {
-      return attr.name != 'href' && attr.name != 'rel';
-    });
-    return node;
-  });
-};
-
 exports.removeAttr = (node, attrName) => {
   node.attrs = node.attrs.filter(attr => attr.name != attrName);
   return Promise.resolve(node);

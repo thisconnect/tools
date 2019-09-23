@@ -1,18 +1,20 @@
 const { relative } = require('path');
 const { writeFile } = require('fildes');
-const bundle = require('./bundle.js');
-const minify = require('./minify.js');
-const { size } = require('../log/index.js');
+const bundle = require('./bundle');
+const minifyStyles = require('./minify');
+const { size } = require('../log/index');
 
-module.exports = ({ src, dest, assets, fonts }) => {
+module.exports = ({ src, dest, assets, fonts, minify = true }) => {
   return bundle({ src, dest, assets, fonts }).then(result => {
     return Promise.all([
       writeFile(dest, result.css),
       writeFile(dest + '.map', result.map)
     ]).then(() => {
+      if (!minify) {
+        return Promise.resolve(result.css);
+      }
       const destmin = dest.replace(/\.css$/, '.min.css');
-
-      return minify({ result, src: dest, dest: destmin }).then(min => {
+      return minifyStyles({ result, src: dest, dest: destmin }).then(min => {
         return Promise.all([
           writeFile(destmin, min.css),
           writeFile(destmin + '.map', min.map)

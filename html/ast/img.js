@@ -1,10 +1,10 @@
 const { extname, resolve } = require('path');
 const { parse } = require('url');
 const { readFile } = require('fildes');
-const { findNodes, getSrc } = require('./index.js');
-const { replaceFragment, removeAttr } = require('./modify.js');
+const { findNodes, getSrc } = require('./index');
+const { replaceFragment, removeAttr } = require('./modify');
 const SVGO = require('svgo');
-const { log } = require('../../log/index.js');
+const { log } = require('../../log/index');
 
 const replace = (node, path, { src, dest }) => {
   let file = resolve(dest, path);

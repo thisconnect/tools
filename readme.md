@@ -1,5 +1,8 @@
 # Build tools
 
+TODO:
+support external scripts/stylesheets http://, https:// and //
+
 
 [![NPM Version](https://img.shields.io/npm/v/tool.svg?style=flat-square&maxAge=1800)](https://www.npmjs.com/package/tool)
 [![MIT](https://img.shields.io/npm/l/tool.svg?style=flat-square&maxAge=1800)](https://github.com/thisconnect/tools/blob/master/license)

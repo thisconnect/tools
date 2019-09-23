@@ -4,19 +4,19 @@ const inline = require('./inline.js');
 const { toHTML } = require('./ast/index.js');
 const minifyHTML = require('./minify.js');
 
-module.exports = ({ src, dest, replace }) => {
-  const options = {
-    src: dirname(src),
-    dest: dirname(dest)
-  };
-
+module.exports = ({ src, dest, replace, treeshake, minify = true }) => {
   return readFile(src)
-    .then(data => inline(data, options))
-    .then(ast => minifyHTML(ast))
+    .then(data => inline(data, {
+      src: dirname(src),
+      dest: dirname(dest),
+      treeshake,
+      minify
+    }))
+    .then(ast => minify ? minifyHTML(ast) : ast)
     .then(ast => toHTML(ast))
     .then(html => {
       if (replace) {
-        for (let str in replace) {
+        for (const str in replace) {
           html = html.replace(str, replace[str]);
         }
       }
