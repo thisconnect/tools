@@ -18,6 +18,7 @@ test('inline HTML', t => {
     .then(result => {
       t.ok(result.indexOf('<script src=') == -1, 'has inlined script');
       t.ok(result.indexOf('<svg') > -1, 'has svg element');
+      t.ok(result.includes('4rem'), 'a value from styles/main.css')
       t.ok(
         result.indexOf('rel=stylesheet') == -1,
         'has no external stylesheet'
