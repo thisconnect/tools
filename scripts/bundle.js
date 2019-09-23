@@ -1,5 +1,5 @@
 const rollup = require('rollup').rollup;
-const { getPlugins } = require('./plugins.js');
+const { getPlugins } = require('./plugins');
 
 module.exports = ({
   src,
