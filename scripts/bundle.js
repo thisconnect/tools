@@ -8,6 +8,7 @@ module.exports = ({
   write = true,
   libs = false, // TODO: change default to true
   minify = true,
+  treeshake = true,
   sourceMap = true,
   context,
   globals,
@@ -19,6 +20,7 @@ module.exports = ({
 }) => {
   const sourcemap = sourceMap != null ? sourceMap : true;
   return rollup({
+    treeshake,
     context,
     input: src,
     external: [].concat(external, globals && Object.keys(globals)),
