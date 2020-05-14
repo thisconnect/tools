@@ -46,7 +46,7 @@
     "postcss-preset-env": "^6.2.0",
     "postcss-pxtorem": "^5.0.0",
     "postcss-reporter": "^6.0.0",
-    "prettier": "^2.0.3",
+    "prettier": "^2.0.5",
     "pretty-bytes": "^5.1.0",
     "rollup": "2.9.1",
     "rollup-plugin-babel": "^4.3.2",
