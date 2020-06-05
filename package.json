@@ -34,7 +34,7 @@
     "gzip-size": "^5.0.0",
     "imagemin": "^7.0.0",
     "imagemin-gifsicle": "^7.0.0",
-    "imagemin-jpegtran": "^6.0.0",
+    "imagemin-jpegtran": "^7.0.0",
     "imagemin-pngquant": "^9.0.0",
     "imagemin-svgo": "^8.0.0",
     "imagemin-webp": "^5.1.0",
