@@ -40,7 +40,7 @@
     "imagemin-webp": "^6.0.0",
     "parse5": "^6.0.0",
     "parse5-htmlparser2-tree-adapter": "^6.0.0",
-    "postcss": "8.1.10",
+    "postcss": "8.1.14",
     "postcss-copy": "7.1.0",
     "postcss-import": "^13.0.0",
     "postcss-preset-env": "^6.2.0",
