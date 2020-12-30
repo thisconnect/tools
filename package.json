@@ -19,7 +19,7 @@
   "dependencies": {
     "@babel/preset-env": "^7.3.4",
     "@babel/preset-react": "^7.0.0",
-    "boxen": "^4.0.0",
+    "boxen": "^5.0.0",
     "browser-sync": "^2.24.5",
     "chalk": "^4.0.0",
     "core-js": "^3.2.1",
