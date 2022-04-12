@@ -30,7 +30,7 @@
     "eslint-plugin-react": "^7.12.4",
     "fildes": "3.2.1",
     "fildes-extra": "^1.0.0",
-    "glob": "^7.1.2",
+    "glob": "^8.0.1",
     "gzip-size": "^6.0.0",
     "imagemin": "^7.0.0",
     "imagemin-gifsicle": "^7.0.0",
